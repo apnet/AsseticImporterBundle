@@ -1,0 +1,8 @@
+language: php
+
+php:
+   - 5.3
+
+script:
+   - ant
+   - ant -f build-dev.xml CI-phpunit
