@@ -22,6 +22,8 @@ class AppKernel extends FunctionalTestBundle\HttpKernel\AppKernel
   {
     return array(
       new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
+      new Symfony\Bundle\TwigBundle\TwigBundle(),
+      new Symfony\Bundle\AsseticBundle\AsseticBundle(),
 
       new FunctionalTestBundle\ApnetFunctionalTestBundle()
     );

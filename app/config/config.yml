@@ -1,7 +1,18 @@
 framework:
-    test: ~
+    test: %kernel.debug%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
     secret: qwerty
     profiler:
         enabled: false
+    templating:
+        engines: ['twig']
+
+# Twig Configuration
+twig:
+    debug: %kernel.debug%
+    strict_variables: %kernel.debug%
+
+# Assetic Configuration
+assetic:
+    use_controller: %kernel.debug%

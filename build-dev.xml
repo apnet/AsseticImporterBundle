@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<project name="Assetic Compass - PHP QA Tools" default="init">
-  <import file="build.xml" />
-  <import file="vendor/covex-nn/phpqatools/build.xml" />
-</project>
