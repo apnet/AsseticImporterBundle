@@ -5,8 +5,7 @@ php:
 
 env:
    global:
-      - secure: "R24MLQ6CwyujG8TtOn/TgzoPyV/QxQkDVMKuaL6Zq1OqxDFkN0sxqeVc3U7GD+UTjhCFu9NmnqAw3p0e29aLxbqyy7wbCg12laIY82j6ZK0DTIXEcJoCDsYFzDGXuX0YnaOm6WLdohT2Wfi98RGA0eVwoV0nzqrvac
-        Z/Glvjyew="
+      - secure: "R24MLQ6CwyujG8TtOn/TgzoPyV/QxQkDVMKuaL6Zq1OqxDFkN0sxqeVc3U7GD+UTjhCFu9NmnqAw3p0e29aLxbqyy7wbCg12laIY82j6ZK0DTIXEcJoCDsYFzDGXuX0YnaOm6WLdohT2Wfi98RGA0eVwoV0nzqrvacZ/Glvjyew="
 
 before_script:
    - wget http://getcomposer.org/composer.phar
