@@ -1,0 +1,7 @@
+framework:
+    test: ~
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+    secret: qwerty
+    profiler:
+        enabled: false
