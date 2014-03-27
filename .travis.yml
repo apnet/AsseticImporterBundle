@@ -11,7 +11,7 @@ env:
 before_script:
    - wget http://getcomposer.org/composer.phar
    - sh -c "if $TRAVIS_SECURE_ENV_VARS; then php composer.phar config --global github-oauth.github.com $GITHUB_OAUTH_TOKEN; fi"
-   - ant
+   - ant -Dsystem.composer=composer.phar
 
 script:
-   - ant -f build-dev.xml -Dsystem.composer=composer.phar CI-phpunit
+   - ant -f build-dev.xml CI-phpunit
