@@ -14,4 +14,4 @@ before_script:
    - ant
 
 script:
-   - ant -f build-dev.xml CI-phpunit
+   - ant -f build-dev.xml -Dsystem.composer=composer.phar CI-phpunit
