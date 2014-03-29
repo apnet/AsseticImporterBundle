@@ -22,9 +22,9 @@ class ApnetAsseticCompassBundle extends Bundle
    */
   public function build(ContainerBuilder $container)
   {
-//    $container->addCompilerPass(
-//      new DependencyInjection\Compiler\TestClientPass()
-//    );
+    $container->addCompilerPass(
+      new DependencyInjection\Compiler\AssetManagerPass()
+    );
   }
 
 }

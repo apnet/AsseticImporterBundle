@@ -1,0 +1,22 @@
+parameters:
+    apnet.assetic.compass_loader.class: Apnet\AsseticCompassBundle\Factory\Loader\CollectionLoader
+    apnet.assetic.asset_manager_cache_warmer.class: Apnet\AsseticCompassBundle\CacheWarmer\AssetManagerCacheWarmer
+    apnet.assetic.compass_resource.class: Apnet\AsseticCompassBundle\Factory\Resource\CollectionResource
+
+services:
+    apnet.assetic.compass_loader:
+        class: %apnet.assetic.compass_loader.class%
+        public: false
+        tags:
+            - { name: assetic.formula_loader, alias: apnet_compass_config }
+
+    apnet.assetic.compass_resource:
+        class: %apnet.assetic.compass_resource.class%
+        tags:
+            - { name: assetic.formula_resource, loader: apnet_compass_config }
+
+    apnet.assetic.asset_manager_cache_warmer:
+        class: %apnet.assetic.asset_manager_cache_warmer.class%
+        public: false
+        tags:
+            - { name: kernel.cache_warmer, priority: 9 }

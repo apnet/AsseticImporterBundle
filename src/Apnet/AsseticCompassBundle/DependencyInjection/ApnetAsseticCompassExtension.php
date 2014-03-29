@@ -22,12 +22,7 @@ class ApnetAsseticCompassExtension extends Extension
 {
 
   /**
-   * Loads a specific configuration.
-   *
-   * @param array            $configs   An array of configuration values
-   * @param ContainerBuilder $container A ContainerBuilder instance
-   *
-   * @return null
+   * {@inheritdoc}
    */
   public function load(array $configs, ContainerBuilder $container)
   {

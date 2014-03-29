@@ -25,6 +25,7 @@ class AppKernel extends FunctionalTestBundle\HttpKernel\AppKernel
       new Symfony\Bundle\TwigBundle\TwigBundle(),
       new Symfony\Bundle\AsseticBundle\AsseticBundle(),
 
+      new Apnet\AsseticCompassBundle\ApnetAsseticCompassBundle(),
       new FunctionalTestBundle\ApnetFunctionalTestBundle()
     );
   }
@@ -35,6 +36,14 @@ class AppKernel extends FunctionalTestBundle\HttpKernel\AppKernel
   public function registerContainerConfiguration(LoaderInterface $loader)
   {
     $loader->load(__DIR__ . "/config/config.yml");
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheDir()
+  {
+    return $this->rootDir . '/cache';
   }
 
 }

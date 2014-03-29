@@ -1,5 +1,7 @@
 .idea
+app/cache
 bin
+composer.lock
 composer.phar
 phpunit.xml
 vendor
