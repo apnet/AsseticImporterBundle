@@ -25,7 +25,8 @@ class AssetManagerPass implements CompilerPassInterface
   {
     $collection = $container->getDefinition('apnet.assetic.compass_resource');
 
-    foreach ($container->findTaggedServiceIds('apnet.assetic.resource') as $id => $attributes) {
+    $resources = $container->findTaggedServiceIds('apnet.assetic.resource');
+    foreach ($resources as $id => $attributes) {
       $collection->addMethodCall('addResource', array(new Reference($id)));
     }
   }

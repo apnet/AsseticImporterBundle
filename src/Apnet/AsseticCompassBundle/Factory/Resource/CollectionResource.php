@@ -56,22 +56,6 @@ class CollectionResource implements ResourceInterface
   }
 
   /**
-   * Add single item to collection
-   *
-   * @param string $sourcePath Absolute path to asset
-   * @param string $targetPath Relative target path
-   *
-   * @return null
-   */
-  public function addItem($sourcePath, $targetPath)
-  {
-    $name = md5($sourcePath);
-    $this->_formulae[$name] = array(
-      array($sourcePath), array(), array("output" => $targetPath)
-    );
-  }
-
-  /**
    * Add asset to manager
    *
    * @param AssetResource $resource Asset resource
@@ -83,19 +67,28 @@ class CollectionResource implements ResourceInterface
     $sourcePath = $resource->getSourcePath();
     $targetPath = $resource->getTargetPath();
 
-    if (!file_exists($sourcePath)) {
-      return;
-    } elseif (is_file($sourcePath)) {
-      $this->addItem($sourcePath, $targetPath);
-    } elseif (is_dir($sourcePath)) {
-      $finder = new Finder\Finder();
+    $items = array();
+    if (file_exists($sourcePath)) {
+      if (is_file($sourcePath)) {
+        $items[$targetPath] = $sourcePath;
+      } elseif (is_dir($sourcePath)) {
+        $finder = new Finder\Finder();
 
-      foreach ($finder->in($sourcePath)->files() as $file) {
-        /* @var $file Finder\SplFileInfo */
-        $this->addItem(
-          $file->getPathname(), $targetPath . "/" . $file->getRelativePathname()
-        );
+        foreach ($finder->in($sourcePath)->files() as $file) {
+          /* @var $file Finder\SplFileInfo */
+          $fileTargetPath = $targetPath . "/" . $file->getRelativePathname();
+          $items[$fileTargetPath] = $file->getPathname();
+        }
       }
     }
+
+    foreach ($items as $target => $source) {
+      $inputs = array($source);
+      /* @todo this is name for {% stylesheet %} !!! */
+      $name = md5($source . $target);
+      $options = array("name" => $name, "output" => $target);
+      $this->_formulae[$name] = array($inputs, array(), $options);
+    }
   }
+
 }

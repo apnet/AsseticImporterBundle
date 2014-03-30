@@ -18,3 +18,4 @@ before_script:
 
 script:
    - bin/phpunit --coverage-text
+   - bin/phpcs --standard=vendor/apnet/coding-standard/src/Apnet src
