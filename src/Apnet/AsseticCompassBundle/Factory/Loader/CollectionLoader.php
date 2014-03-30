@@ -23,7 +23,12 @@ class CollectionLoader implements FormulaLoaderInterface
    */
   public function load(ResourceInterface $resource)
   {
-    return $resource instanceof CollectionResource ? $resource->getContent() : array();
+    if ($resource instanceof CollectionResource) {
+      $content = $resource->getContent();
+    } else {
+      $content = array();
+    }
+    return $content;
   }
 
 }
