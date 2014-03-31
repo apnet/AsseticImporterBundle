@@ -1,16 +1,30 @@
 services:
     apnet.assetic.asset.dir1:
-        class: Apnet\AsseticImporterBundle\Factory\AssetResource
+        class: %apnet.assetic.asset_mapper.class%
+        factory_service: apnet.assetic.path.compass
+        factory_method: load
         arguments:
             - %kernel.root_dir%/Resources/dir1
             - test1/dir2
         tags:
-            - { name: apnet.assetic.resource }
+            - { name: apnet.assetic.asset_mapper }
 
     apnet.assetic.asset.style1_css:
-        class: Apnet\AsseticImporterBundle\Factory\AssetResource
+        class: %apnet.assetic.asset_mapper.class%
+        factory_service: apnet.assetic.path.compass
+        factory_method: load
         arguments:
             - %kernel.root_dir%/Resources/style1.css
             - test2/style2.css
         tags:
-            - { name: apnet.assetic.resource }
+            - { name: apnet.assetic.asset_mapper }
+
+    apnet.assetic.importer.compass_project1:
+        class: %apnet.assetic.asset_mapper.class%
+        factory_service: apnet.assetic.importer.compass
+        factory_method: load
+        arguments:
+            - %kernel.root_dir%/Resources/compass_project1/config.rb
+            - composer_project1
+        tags:
+            - { name: apnet.assetic.asset_mapper }

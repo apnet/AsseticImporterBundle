@@ -1,0 +1,8 @@
+@import "compass/css3/font-face";
+
+@include font-face("font-name", font-files("font-file.woff", "font-file.ttf", "font-file.svg"), "font-file.eot", normal);
+
+.bg {
+  background: image-url('compass-logo-small.png');
+  font-weight: bold;
+}

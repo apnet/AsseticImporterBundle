@@ -9,7 +9,7 @@
 namespace Apnet\AsseticImporterBundle\Factory\Resource;
 
 use Assetic\Factory\Resource\ResourceInterface;
-use Apnet\AsseticImporterBundle\Factory\AssetResource;
+use Apnet\AsseticImporterBundle\Factory\AssetMapper;
 use Symfony\Component\Finder;
 
 /**
@@ -56,28 +56,30 @@ class CollectionResource implements ResourceInterface
   }
 
   /**
-   * Add asset to manager
+   * Add asset mapper
    *
-   * @param AssetResource $resource Asset resource
+   * @param AssetMapper $mapper Asset mapper object
    *
    * @return null
    */
-  public function addResource(AssetResource $resource)
+  public function addAssetMapper(AssetMapper $mapper)
   {
-    $sourcePath = $resource->getSourcePath();
-    $targetPath = $resource->getTargetPath();
-
     $items = array();
-    if (file_exists($sourcePath)) {
-      if (is_file($sourcePath)) {
-        $items[$targetPath] = $sourcePath;
-      } elseif (is_dir($sourcePath)) {
-        $finder = new Finder\Finder();
 
-        foreach ($finder->in($sourcePath)->files() as $file) {
-          /* @var $file Finder\SplFileInfo */
-          $fileTargetPath = $targetPath . "/" . $file->getRelativePathname();
-          $items[$fileTargetPath] = $file->getPathname();
+    foreach ($mapper as $data) {
+      list($sourcePath, $targetPath) = $data;
+
+      if (file_exists($sourcePath)) {
+        if (is_file($sourcePath)) {
+          $items[$targetPath] = $sourcePath;
+        } elseif (is_dir($sourcePath)) {
+          $finder = new Finder\Finder();
+
+          foreach ($finder->in($sourcePath)->files() as $file) {
+            /* @var $file Finder\SplFileInfo */
+            $fileTargetPath = $targetPath . "/" . $file->getRelativePathname();
+            $items[$fileTargetPath] = $file->getPathname();
+          }
         }
       }
     }

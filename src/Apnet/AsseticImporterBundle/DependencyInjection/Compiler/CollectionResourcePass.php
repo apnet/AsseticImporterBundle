@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Adds services tagged as assets to the asset manager.
+ * Adds services tagged as assets to the resource collection
  *
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
@@ -13,9 +13,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Adds services tagged as assets to the asset manager.
+ * Adds services tagged as assets to the resource collection
  */
-class AssetManagerPass implements CompilerPassInterface
+class CollectionResourcePass implements CompilerPassInterface
 {
 
   /**
@@ -25,9 +25,9 @@ class AssetManagerPass implements CompilerPassInterface
   {
     $collection = $container->getDefinition('apnet.assetic.importer_resource');
 
-    $resources = $container->findTaggedServiceIds('apnet.assetic.resource');
-    foreach ($resources as $id => $attributes) {
-      $collection->addMethodCall('addResource', array(new Reference($id)));
+    $mappers = $container->findTaggedServiceIds('apnet.assetic.asset_mapper');
+    foreach ($mappers as $id => $attributes) {
+      $collection->addMethodCall('addAssetMapper', array(new Reference($id)));
     }
   }
 

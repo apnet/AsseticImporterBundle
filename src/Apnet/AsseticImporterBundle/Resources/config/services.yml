@@ -1,20 +1,45 @@
 parameters:
     apnet.assetic.importer_loader.class: Apnet\AsseticImporterBundle\Factory\Loader\CollectionLoader
-    apnet.assetic.asset_manager_cache_warmer.class: Apnet\AsseticImporterBundle\CacheWarmer\AssetManagerCacheWarmer
     apnet.assetic.importer_resource.class: Apnet\AsseticImporterBundle\Factory\Resource\CollectionResource
 
+    apnet.assetic.asset_mapper.class: Apnet\AsseticImporterBundle\Factory\AssetMapper
+
+    apnet.assetic.importer_parser.compass_config.class: Apnet\AsseticImporterBundle\Parser\CompassConfigParser
+
+    apnet.assetic.importer.path.class: Apnet\AsseticImporterBundle\Factory\Importer\PathImporter
+    apnet.assetic.importer.compass.class: Apnet\AsseticImporterBundle\Factory\Importer\CompassImporter
+
+    apnet.assetic.asset_manager_cache_warmer.class: Apnet\AsseticImporterBundle\CacheWarmer\AssetManagerCacheWarmer
+
 services:
+    # Assetic loader
     apnet.assetic.importer_loader:
         class: %apnet.assetic.importer_loader.class%
         public: false
         tags:
             - { name: assetic.formula_loader, alias: apnet_importer_config }
 
+    # Assetic resource
     apnet.assetic.importer_resource:
         class: %apnet.assetic.importer_resource.class%
         tags:
             - { name: assetic.formula_resource, loader: apnet_importer_config }
 
+    # config.rb parser
+    apnet.assetic.importer_parser.compass_config:
+        class: %apnet.assetic.importer_parser.compass_config.class%
+
+    # path importer
+    apnet.assetic.path.compass:
+        class: %apnet.assetic.importer.path.class%
+
+    # config.rb importer
+    apnet.assetic.importer.compass:
+        class: %apnet.assetic.importer.compass.class%
+        arguments:
+            - @apnet.assetic.importer_parser.compass_config
+
+    # cache warmer ???
     apnet.assetic.asset_manager_cache_warmer:
         class: %apnet.assetic.asset_manager_cache_warmer.class%
         public: false
