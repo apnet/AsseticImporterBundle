@@ -6,15 +6,14 @@
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-namespace Apnet\AsseticCompassBundle\Tests;
+namespace Apnet\AsseticImporterBundle\Tests;
 
 use Apnet\FunctionalTestBundle\Framework\WebTestCase;
-use Apnet\FunctionalTestBundle\Framework\Client;
 
 /**
  * Test Framework\WebTestCase class
  */
-class ApnetAsseticCompassBundleTest extends WebTestCase
+class ApnetAsseticImporterBundleTest extends WebTestCase
 {
 
   /**

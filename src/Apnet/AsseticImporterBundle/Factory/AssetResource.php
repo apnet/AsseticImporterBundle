@@ -6,7 +6,7 @@
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-namespace Apnet\AsseticCompassBundle\Factory;
+namespace Apnet\AsseticImporterBundle\Factory;
 
 /**
  * File or directory resource

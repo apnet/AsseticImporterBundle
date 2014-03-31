@@ -25,7 +25,7 @@ class AppKernel extends FunctionalTestBundle\HttpKernel\AppKernel
       new Symfony\Bundle\TwigBundle\TwigBundle(),
       new Symfony\Bundle\AsseticBundle\AsseticBundle(),
 
-      new Apnet\AsseticCompassBundle\ApnetAsseticCompassBundle(),
+      new Apnet\AsseticImporterBundle\ApnetAsseticImporterBundle(),
       new FunctionalTestBundle\ApnetFunctionalTestBundle()
     );
   }

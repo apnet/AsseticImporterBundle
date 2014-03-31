@@ -1,6 +1,6 @@
 {
-    "name" : "apnet/assetic-compass-bundle",
-    "description" : "Integrates compass projects into Symfony2",
+    "name" : "apnet/assetic-importer-bundle",
+    "description" : "Integrates resource projects into Symfony2",
     "keywords" : ["compass", "sass", "css", "scss", "assetic"],
     "type" : "symfony-bundle",
     "license" : "GPL3",

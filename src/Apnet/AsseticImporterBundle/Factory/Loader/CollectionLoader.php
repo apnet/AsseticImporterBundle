@@ -6,11 +6,11 @@
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-namespace Apnet\AsseticCompassBundle\Factory\Loader;
+namespace Apnet\AsseticImporterBundle\Factory\Loader;
 
 use Assetic\Factory\Loader\FormulaLoaderInterface;
 use Assetic\Factory\Resource\ResourceInterface;
-use Apnet\AsseticCompassBundle\Factory\Resource\CollectionResource;
+use Apnet\AsseticImporterBundle\Factory\Resource\CollectionResource;
 
 /**
  * Loads collected formulae.

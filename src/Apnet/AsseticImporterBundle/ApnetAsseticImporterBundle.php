@@ -1,20 +1,20 @@
 <?php
 
 /**
- * Apnet Assetic Compass Bundle
+ * Apnet Assetic Importer Bundle
  *
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-namespace Apnet\AsseticCompassBundle;
+namespace Apnet\AsseticImporterBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * Apnet Assetic Compass Bundle
+ * Apnet Assetic Importer Bundle
  */
-class ApnetAsseticCompassBundle extends Bundle
+class ApnetAsseticImporterBundle extends Bundle
 {
 
   /**

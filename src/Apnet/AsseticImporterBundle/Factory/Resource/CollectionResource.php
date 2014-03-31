@@ -6,10 +6,10 @@
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-namespace Apnet\AsseticCompassBundle\Factory\Resource;
+namespace Apnet\AsseticImporterBundle\Factory\Resource;
 
 use Assetic\Factory\Resource\ResourceInterface;
-use Apnet\AsseticCompassBundle\Factory\AssetResource;
+use Apnet\AsseticImporterBundle\Factory\AssetResource;
 use Symfony\Component\Finder;
 
 /**
@@ -52,7 +52,7 @@ class CollectionResource implements ResourceInterface
    */
   public function __toString()
   {
-    return 'apnet_assetic_compass';
+    return 'apnet_assetic_importer';
   }
 
   /**

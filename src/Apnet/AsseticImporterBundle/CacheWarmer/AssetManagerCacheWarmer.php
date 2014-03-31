@@ -6,10 +6,9 @@
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-namespace Apnet\AsseticCompassBundle\CacheWarmer;
+namespace Apnet\AsseticImporterBundle\CacheWarmer;
 
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
-use Apnet\AsseticCompassBundle\Factory\AssetManager;
 
 /**
  * The AssetManagerCacheWarmer warms up the formula loader.

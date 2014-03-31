@@ -6,7 +6,7 @@
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-namespace Apnet\AsseticCompassBundle\DependencyInjection\Compiler;
+namespace Apnet\AsseticImporterBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -23,7 +23,7 @@ class AssetManagerPass implements CompilerPassInterface
    */
   public function process(ContainerBuilder $container)
   {
-    $collection = $container->getDefinition('apnet.assetic.compass_resource');
+    $collection = $container->getDefinition('apnet.assetic.importer_resource');
 
     $resources = $container->findTaggedServiceIds('apnet.assetic.resource');
     foreach ($resources as $id => $attributes) {

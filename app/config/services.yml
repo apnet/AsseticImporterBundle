@@ -1,6 +1,6 @@
 services:
     apnet.assetic.asset.dir1:
-        class: Apnet\AsseticCompassBundle\Factory\AssetResource
+        class: Apnet\AsseticImporterBundle\Factory\AssetResource
         arguments:
             - %kernel.root_dir%/Resources/dir1
             - test1/dir2
@@ -8,7 +8,7 @@ services:
             - { name: apnet.assetic.resource }
 
     apnet.assetic.asset.style1_css:
-        class: Apnet\AsseticCompassBundle\Factory\AssetResource
+        class: Apnet\AsseticImporterBundle\Factory\AssetResource
         arguments:
             - %kernel.root_dir%/Resources/style1.css
             - test2/style2.css
