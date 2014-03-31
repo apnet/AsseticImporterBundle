@@ -6,9 +6,9 @@
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-namespace Apnet\AsseticCompassBundle\Tests\Factory;
+namespace Apnet\AsseticImporterBundle\Tests\Factory;
 
-use Apnet\AsseticCompassBundle\Factory\AssetResource;
+use Apnet\AsseticImporterBundle\Factory\AssetResource;
 
 /**
  * Test Asset resource

@@ -6,7 +6,7 @@
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-namespace Apnet\AsseticCompassBundle\DependencyInjection;
+namespace Apnet\AsseticImporterBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class ApnetAsseticCompassExtension extends Extension
+class ApnetAsseticImporterExtension extends Extension
 {
 
   /**
