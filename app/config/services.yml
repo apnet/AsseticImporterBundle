@@ -4,7 +4,7 @@ services:
         factory_service: apnet.assetic.path.compass
         factory_method: load
         arguments:
-            - %kernel.root_dir%/Resources/dir1
+            - %kernel.root_dir%/Resources/assets/dir1
             - test1/dir2
         tags:
             - { name: apnet.assetic.asset_mapper }
@@ -14,7 +14,7 @@ services:
         factory_service: apnet.assetic.path.compass
         factory_method: load
         arguments:
-            - %kernel.root_dir%/Resources/style1.css
+            - %kernel.root_dir%/Resources/assets/style1.css
             - test2/style2.css
         tags:
             - { name: apnet.assetic.asset_mapper }
@@ -24,7 +24,7 @@ services:
         factory_service: apnet.assetic.importer.compass
         factory_method: load
         arguments:
-            - %kernel.root_dir%/Resources/compass_project1/config.rb
+            - %kernel.root_dir%/Resources/assets/compass_project1/config.rb
             - composer_project1
         tags:
             - { name: apnet.assetic.asset_mapper }
