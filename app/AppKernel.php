@@ -24,6 +24,7 @@ class AppKernel extends FunctionalTestBundle\HttpKernel\AppKernel
       new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
       new Symfony\Bundle\TwigBundle\TwigBundle(),
       new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+      new Symfony\Bundle\MonologBundle\MonologBundle(),
 
       new Apnet\AsseticImporterBundle\ApnetAsseticImporterBundle(),
       new FunctionalTestBundle\ApnetFunctionalTestBundle()
@@ -43,7 +44,15 @@ class AppKernel extends FunctionalTestBundle\HttpKernel\AppKernel
    */
   public function getCacheDir()
   {
-    return $this->rootDir . '/cache';
+    return $this->rootDir.'/cache/'.$this->environment;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getLogDir()
+  {
+    return $this->rootDir.'/logs';
   }
 
 }

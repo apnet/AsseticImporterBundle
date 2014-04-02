@@ -1,5 +1,7 @@
 .idea
+.vagrant
 app/cache
+app/logs
 bin
 composer.lock
 composer.phar

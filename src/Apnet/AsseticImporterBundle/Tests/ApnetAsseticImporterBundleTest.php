@@ -50,8 +50,8 @@ class ApnetAsseticImporterBundleTest extends WebTestCase
   public function staticCollectionProvider()
   {
     return array(
-      array("/style1.css", "/test2/style2.css"),
-      array("/dir1/style.css", "/test1/dir2/style.css"),
+      array("/assets/style1.css", "/test2/style2.css"),
+      array("/assets/dir1/style.css", "/test1/dir2/style.css"),
     );
   }
 
