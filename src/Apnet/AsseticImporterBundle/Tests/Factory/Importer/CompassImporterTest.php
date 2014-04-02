@@ -14,8 +14,14 @@ use Apnet\AsseticImporterBundle\Parser\CompassConfigParser;
 /**
  * Test compass importer
  */
-class CompassImporterTest extends \PHPUnit_Framework_TestCase {
+class CompassImporterTest extends \PHPUnit_Framework_TestCase
+{
 
+  /**
+   * Test load asset mapper
+   *
+   * @return null
+   */
   public function testLoad()
   {
     $parser = new CompassConfigParser();

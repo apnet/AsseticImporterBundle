@@ -13,8 +13,14 @@ use Apnet\AsseticImporterBundle\Factory\Importer\PathImporter;
 /**
  * Test path importer
  */
-class PathImporterTest extends \PHPUnit_Framework_TestCase {
+class PathImporterTest extends \PHPUnit_Framework_TestCase
+{
 
+  /**
+   * Test load asset mapper
+   *
+   * @return null
+   */
   public function testLoad()
   {
     $importer = new PathImporter();

@@ -44,6 +44,11 @@ class CompassConfigParserTest extends \PHPUnit_Framework_TestCase
     $this->assertEquals($data, $parser->parse($input));
   }
 
+  /**
+   * Data provider for testParse
+   *
+   * @return array
+   */
   public function parseDataProvider()
   {
     return array(

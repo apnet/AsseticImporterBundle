@@ -28,12 +28,12 @@ class CompassConfigLexer extends AbstractLexer
   const T_TRUE                = 110;
   const T_COLON               = 112;
 
-  protected $noCase = array(
+  protected $_noCase = array(
     '='  => self::T_EQUALS,
     ':'  => self::T_COLON,
   );
 
-  protected $withCase = array(
+  protected $_withCase = array(
     'true'  => self::T_TRUE,
     'false' => self::T_FALSE,
   );
@@ -73,13 +73,13 @@ class CompassConfigLexer extends AbstractLexer
       return self::T_STRING;
     }
 
-    if (isset($this->noCase[$value])) {
-      return $this->noCase[$value];
+    if (isset($this->_noCase[$value])) {
+      return $this->_noCase[$value];
     }
 
     $lowerValue = strtolower($value);
-    if (isset($this->withCase[$lowerValue])) {
-      return $this->withCase[$lowerValue];
+    if (isset($this->_withCase[$lowerValue])) {
+      return $this->_withCase[$lowerValue];
     }
 
     if (ctype_alpha($value[0])) {

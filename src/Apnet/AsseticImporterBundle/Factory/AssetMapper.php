@@ -30,8 +30,8 @@ class AssetMapper implements \IteratorAggregate, \Countable
   /**
    * Add new relation between source and target paths
    *
-   * @param string $sourcePath
-   * @param string $targetPath
+   * @param string $sourcePath Source path
+   * @param string $targetPath Target path
    *
    * @return $this
    */

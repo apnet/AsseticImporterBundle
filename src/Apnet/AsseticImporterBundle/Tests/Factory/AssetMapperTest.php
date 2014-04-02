@@ -26,24 +26,24 @@ class AssetMapperTest extends \PHPUnit_Framework_TestCase
     $mapper = new AssetMapper();
     $mapper->add("/tmp", "asdf");
 
-    $mapper2 = $mapper->add("/etc", "qwerty");
-    $this->assertEquals($mapper, $mapper2);
+    $mapperTwo = $mapper->add("/etc", "qwerty");
+    $this->assertEquals($mapper, $mapperTwo);
 
     $actual = array();
     foreach ($mapper as $key => $value) {
       $actual[$key] = $value;
     }
 
-    $item0 = array("/tmp", "asdf");
-    $item1 = array("/etc", "qwerty");
+    $itemOne = array("/tmp", "asdf");
+    $itemTwo = array("/etc", "qwerty");
 
     $this->assertEquals(
-      array($item0, $item1), $actual
+      array($itemOne, $itemTwo), $actual
     );
 
     $this->assertEquals(2, sizeof($mapper));
-    $this->assertEquals($item0, $mapper->item(0));
-    $this->assertEquals($item1, $mapper->item(1));
+    $this->assertEquals($itemOne, $mapper->item(0));
+    $this->assertEquals($itemTwo, $mapper->item(1));
     $this->assertNull($mapper->item(2));
   }
 
