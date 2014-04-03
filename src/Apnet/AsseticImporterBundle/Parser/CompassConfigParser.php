@@ -79,4 +79,15 @@ class CompassConfigParser implements ParserInterface
     return $config;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function load($path)
+  {
+    // @todo validate $path
+    return $this->parse(
+      file_get_contents($path)
+    );
+  }
+
 }

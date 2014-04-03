@@ -1,15 +1,9 @@
 parameters:
     apnet.assetic.importer_loader.class: Apnet\AsseticImporterBundle\Factory\Loader\CollectionLoader
     apnet.assetic.importer_resource.class: Apnet\AsseticImporterBundle\Factory\Resource\CollectionResource
-
     apnet.assetic.asset_mapper.class: Apnet\AsseticImporterBundle\Factory\AssetMapper
-
-    apnet.assetic.importer_parser.compass_config.class: Apnet\AsseticImporterBundle\Parser\CompassConfigParser
-
-    apnet.assetic.importer.path.class: Apnet\AsseticImporterBundle\Factory\Importer\PathImporter
-    apnet.assetic.importer.compass.class: Apnet\AsseticImporterBundle\Factory\Importer\CompassImporter
-
     apnet.assetic.importer_twig_extension.class: Apnet\AsseticImporterBundle\Twig\Extension\ImporterExtension
+    apnet.assetic.asset_watcher.class: Apnet\AsseticImporterBundle\Factory\AssetWatcher
 
 services:
     # Assetic loader
@@ -25,20 +19,7 @@ services:
         tags:
             - { name: assetic.formula_resource, loader: apnet_importer_config }
 
-    # config.rb parser
-    apnet.assetic.importer_parser.compass_config:
-        class: %apnet.assetic.importer_parser.compass_config.class%
-
-    # path importer
-    apnet.assetic.path.compass:
-        class: %apnet.assetic.importer.path.class%
-
-    # config.rb importer
-    apnet.assetic.importer.compass:
-        class: %apnet.assetic.importer.compass.class%
-        arguments:
-            - @apnet.assetic.importer_parser.compass_config
-
+    # Twig extension
     apnet.assetic.importer_twig_extension:
         class: %apnet.assetic.importer_twig_extension.class%
         arguments:
@@ -46,3 +27,7 @@ services:
             - @apnet.assetic.importer_resource
         tags:
             - { name: twig.extension }
+
+    # Asset watcher factory ?
+    apnet.assetic.asset_watcher:
+        class: %apnet.assetic.asset_watcher.class%

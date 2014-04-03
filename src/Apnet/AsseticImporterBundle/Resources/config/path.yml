@@ -1,0 +1,15 @@
+parameters:
+    apnet.assetic.importer.path.class: Apnet\AsseticImporterBundle\Factory\Importer\PathImporter
+
+services:
+    # path importer
+    apnet.assetic.importer.path:
+        class: %apnet.assetic.importer.path.class%
+
+    # importer_path service templae
+    assetic.importer_path:
+        class: %apnet.assetic.asset_mapper.class%
+        factory_service: apnet.assetic.importer.path
+        factory_method: load
+        public: false
+        abstract: true

@@ -24,9 +24,6 @@ class CollectionResourcePass implements CompilerPassInterface
    */
   public function process(ContainerBuilder $container)
   {
-    $obj = $container->getDefinition("apnet.assetic.importer.compass_project1");
-    $obj->getProperties();
-
     $collection = $container->getDefinition('apnet.assetic.importer_resource');
 
     $assets = $container->findTaggedServiceIds('apnet.assetic.asset_mapper');
@@ -34,19 +31,24 @@ class CollectionResourcePass implements CompilerPassInterface
       $collection->addMethodCall('addAssetMapper', array(new Reference($id)));
     }
 
+    $watcher = $container->getDefinition('apnet.assetic.asset_watcher');
+
     $parameterBag = $container->getParameterBag();
     $configs = $container->findTaggedServiceIds('apnet.assetic.config_mapper');
     foreach ($configs as $id => $tagAttributes) {
+      $collection->addMethodCall('addAssetMapper', array(new Reference($id)));
+
       $configPath = $parameterBag->resolveValue(
         $container->getDefinition($id)->getArgument(0)
       );
 
       $configResource = new FileResource($configPath);
       $container->addResource($configResource);
-//      foreach ($tagAttributes as $attr) {
-//        @todo register config $configPath somewhere to track changes in "sub"-files
-//      }
-//      @todo cache-warmer-clearer ??
+      foreach ($tagAttributes as $attr) {
+        if (isset($attr["watcher"])) {
+          $watcher->addMethodCall('addConfig', array($configPath, $attr["watcher"]));
+        }
+      }
     }
   }
 

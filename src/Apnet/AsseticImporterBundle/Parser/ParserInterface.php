@@ -23,4 +23,13 @@ interface ParserInterface
    */
   public function parse($input);
 
+  /**
+   * Parse input text and return project config data
+   *
+   * @param string $path Input file
+   *
+   * @return array
+   */
+  public function load($path);
+
 }

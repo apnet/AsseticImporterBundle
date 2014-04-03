@@ -34,6 +34,8 @@ class ApnetAsseticImporterExtension extends Extension
       new FileLocator(__DIR__ . '/../Resources/config')
     );
     $loader->load('services.yml');
+    $loader->load('path.yml');
+    $loader->load('compass.yml');
   }
 
 }

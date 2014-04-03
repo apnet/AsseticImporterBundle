@@ -23,6 +23,9 @@ class ApnetAsseticImporterBundle extends Bundle
   public function build(ContainerBuilder $container)
   {
     $container->addCompilerPass(
+      new DependencyInjection\Compiler\WatchersPass()
+    );
+    $container->addCompilerPass(
       new DependencyInjection\Compiler\CollectionResourcePass()
     );
   }
