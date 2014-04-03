@@ -49,7 +49,6 @@ class CompassImporter
    */
   public function load($configPath, $targetPath)
   {
-    /* @todo validate $configPath */
     $mapper = new AssetMapper();
 
     $input = file_get_contents($configPath);
