@@ -29,26 +29,24 @@ class CollectionResourcePass implements CompilerPassInterface
 
     $collection = $container->getDefinition('apnet.assetic.importer_resource');
 
-    $mappers = $container->findTaggedServiceIds('apnet.assetic.asset_mapper');
-    foreach ($mappers as $id => $tagAttributes) {
-      foreach ($tagAttributes as $attr) {
-        if (isset($attr["config"])) {
-          $config = $attr["config"];
-          $mapper = $container->getDefinition($id);
-          $arguments = $mapper->getArguments();
+    $assets = $container->findTaggedServiceIds('apnet.assetic.asset_mapper');
+    foreach ($assets as $id => $tagAttributes) {
+      $collection->addMethodCall('addAssetMapper', array(new Reference($id)));
+    }
 
-          if (isset($arguments[$config])) {
-            $configPath = $container->getParameterBag()
-              ->resolveValue($arguments[$config]);
+    $parameterBag = $container->getParameterBag();
+    $configs = $container->findTaggedServiceIds('apnet.assetic.config_mapper');
+    foreach ($configs as $id => $tagAttributes) {
+      $configPath = $parameterBag->resolveValue(
+        $container->getDefinition($id)->getArgument(0)
+      );
 
-            if (file_exists($configPath)) {
-              $configResource = new FileResource($configPath);
-              $container->addResource($configResource);
-            }
-          }
-        }
-        $collection->addMethodCall('addAssetMapper', array(new Reference($id)));
-      }
+      $configResource = new FileResource($configPath);
+      $container->addResource($configResource);
+//      foreach ($tagAttributes as $attr) {
+//        @todo register config $configPath somewhere to track changes in "sub"-files
+//      }
+//      @todo cache-warmer-clearer ??
     }
   }
 

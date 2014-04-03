@@ -30,4 +30,5 @@ services:
             - composer_project1
         public: false
         tags:
-            - { name: apnet.assetic.asset_mapper, config: 0 }
+            - { name: apnet.assetic.asset_mapper }
+            - { name: apnet.assetic.config_mapper }
