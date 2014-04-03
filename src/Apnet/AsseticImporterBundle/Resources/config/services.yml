@@ -9,7 +9,7 @@ parameters:
     apnet.assetic.importer.path.class: Apnet\AsseticImporterBundle\Factory\Importer\PathImporter
     apnet.assetic.importer.compass.class: Apnet\AsseticImporterBundle\Factory\Importer\CompassImporter
 
-    apnet.assetic.asset_manager_cache_warmer.class: Apnet\AsseticImporterBundle\CacheWarmer\AssetManagerCacheWarmer
+    apnet.assetic.importer_twig_extension.class: Apnet\AsseticImporterBundle\Twig\Extension\ImporterExtension
 
 services:
     # Assetic loader
@@ -39,9 +39,10 @@ services:
         arguments:
             - @apnet.assetic.importer_parser.compass_config
 
-    # cache warmer ???
-    apnet.assetic.asset_manager_cache_warmer:
-        class: %apnet.assetic.asset_manager_cache_warmer.class%
-        public: false
+    apnet.assetic.importer_twig_extension:
+        class: %apnet.assetic.importer_twig_extension.class%
+        arguments:
+            - @router
+            - @apnet.assetic.importer_resource
         tags:
-            - { name: kernel.cache_warmer, priority: 9 }
+            - { name: twig.extension }

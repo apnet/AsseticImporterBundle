@@ -11,7 +11,7 @@ namespace Apnet\AsseticImporterBundle\Tests;
 use Apnet\FunctionalTestBundle\Framework\WebTestCase;
 
 /**
- * Test Framework\WebTestCase class
+ * Test bundle
  */
 class ApnetAsseticImporterBundleTest extends WebTestCase
 {

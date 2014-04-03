@@ -8,14 +8,13 @@
  */
 namespace Apnet\AsseticImporterBundle\Factory\Resource;
 
-use Assetic\Factory\Resource\ResourceInterface;
 use Apnet\AsseticImporterBundle\Factory\AssetMapper;
 use Symfony\Component\Finder;
 
 /**
  * A collection resource
  */
-class CollectionResource implements ResourceInterface
+class CollectionResource implements CollectionResourceInterface
 {
 
   /**
@@ -56,11 +55,7 @@ class CollectionResource implements ResourceInterface
   }
 
   /**
-   * Add asset mapper
-   *
-   * @param AssetMapper $mapper Asset mapper object
-   *
-   * @return null
+   * {@inheritdoc}
    */
   public function addAssetMapper(AssetMapper $mapper)
   {
@@ -86,11 +81,21 @@ class CollectionResource implements ResourceInterface
 
     foreach ($items as $target => $source) {
       $inputs = array($source);
-      /* @todo this is name for {% stylesheet %} !!! */
-      $name = md5($source . $target);
+
+      $name = $this->getFormulaeName($target);
       $options = array("name" => $name, "output" => $target);
       $this->_formulae[$name] = array($inputs, array(), $options);
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getFormulaeName($target)
+  {
+    $target = trim($target, "/");
+
+    return "importer_" . md5($target);
   }
 
 }

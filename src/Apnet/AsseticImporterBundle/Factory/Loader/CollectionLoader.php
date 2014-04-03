@@ -10,7 +10,7 @@ namespace Apnet\AsseticImporterBundle\Factory\Loader;
 
 use Assetic\Factory\Loader\FormulaLoaderInterface;
 use Assetic\Factory\Resource\ResourceInterface;
-use Apnet\AsseticImporterBundle\Factory\Resource\CollectionResource;
+use Apnet\AsseticImporterBundle\Factory\Resource\CollectionResourceInterface;
 
 /**
  * Loads collected formulae.
@@ -23,7 +23,7 @@ class CollectionLoader implements FormulaLoaderInterface
    */
   public function load(ResourceInterface $resource)
   {
-    if ($resource instanceof CollectionResource) {
+    if ($resource instanceof CollectionResourceInterface) {
       $content = $resource->getContent();
     } else {
       $content = array();
