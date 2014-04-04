@@ -8,6 +8,10 @@
  */
 namespace Apnet\AsseticWatcherBundle\Factory;
 
+use Symfony\Component\Config\ConfigCache;
+use Symfony\Component\Config\Resource\FileResource;
+use Symfony\Component\Config\Resource\DirectoryResource;
+
 /**
  * Asset watcher
  */
@@ -20,11 +24,25 @@ class SourceCodeWatcher
   private $_watchers = array();
 
   /**
-   * Public constructor
+   * @var array
    */
-  public function __construct()
+  private $_configs = array();
+
+  /**
+   * @var SourceCodeCache
+   */
+  private $_cache;
+
+  /**
+   * Public constructor
+   *
+   * @param SourceCodeCache $cache Cache factory
+   */
+  public function __construct(SourceCodeCache $cache)
   {
     $this->_watchers = array();
+    $this->_configs = array();
+    $this->_cache = $cache;
   }
 
   /**
@@ -44,16 +62,17 @@ class SourceCodeWatcher
   /**
    * Add config path to watch
    *
-   * @param string $configPath Path to config file
-   * @param string $name       Watcher name
+   * @param string $config  Path to config file
+   * @param string $watcher Watcher name
    *
    * @return null
    */
-  public function addConfig($configPath, $name)
+  public function addConfig($config, $watcher)
   {
-    if (isset($this->_watchers[$name])) {
-      $this->_watchers[$name]->addConfigPath($configPath);
+    if (!isset($this->_configs[$watcher])) {
+      $this->_configs[$watcher] = array();
     }
+    $this->_configs[$watcher][] = $config;
   }
 
   /**
@@ -63,8 +82,16 @@ class SourceCodeWatcher
    */
   public function compile()
   {
-    // @todo compile watchers' files. Use "Caching based on resources"
-    // http://symfony.com/doc/current/components/config/caching.html
+    foreach ($this->_watchers as $name => $watcher) {
+      if (isset($this->_configs[$name])) {
+        foreach ($this->_configs[$name] as $configPath) {
+          $files = $watcher->getChildren($configPath);
+          if ($this->_cache->refresh($configPath, $files)) {
+            $watcher->compile($configPath);
+          }
+        }
+      }
+    }
   }
 
 }

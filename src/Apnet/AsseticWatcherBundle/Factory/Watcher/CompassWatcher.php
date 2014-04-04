@@ -22,11 +22,6 @@ class CompassWatcher implements WatcherInterface
   private $_parser;
 
   /**
-   * @var array
-   */
-  private $_config;
-
-  /**
    * Public constructor
    *
    * @param ParserInterface $parser Config parser
@@ -40,9 +35,23 @@ class CompassWatcher implements WatcherInterface
   /**
    * {@inheritdoc}
    */
-  public function addConfigPath($configPath)
+  public function getChildren($configPath)
   {
-    $this->_config[] = $configPath;
+    $config = $this->_parser->load($configPath);
+
+    $children = array();
+    if (isset($config["sass_dir"])) {
+      $children[] = dirname($configPath) . "/" . $config["sass_dir"];
+    }
+    return $children;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function compile($configPath)
+  {
+
   }
 
   /**

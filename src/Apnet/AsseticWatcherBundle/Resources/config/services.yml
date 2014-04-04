@@ -1,11 +1,38 @@
 parameters:
+    apnet.assetic.source_cache.class: Apnet\AsseticWatcherBundle\Factory\SourceCodeCache
+    apnet.assetic.source_cache.clearer.class: Apnet\AsseticWatcherBundle\Cache\SourceCodeCacheClearer
+    apnet.assetic.source_cache.warmer.class: Apnet\AsseticWatcherBundle\Cache\SourceCodeCacheWarmer
     apnet.assetic.source_watcher.class: Apnet\AsseticWatcherBundle\Factory\SourceCodeWatcher
     apnet.assetic.listener.asset_watcher.class: Apnet\AsseticWatcherBundle\Listener\KernelRequestListener
 
 services:
+    # Asset ConfigCache factory
+    apnet.assetic.source_cache:
+        class: %apnet.assetic.source_cache.class%
+        arguments:
+            - %kernel.cache_dir%
+
+    # SourceCode watcher cache clearer
+    apnet.assetic.source_cache.clearer:
+        class: %apnet.assetic.source_cache.clearer.class%
+        arguments:
+            - @apnet.assetic.source_cache
+        tags:
+            - { name: kernel.cache_clearer }
+
     # Asset watcher factory
     apnet.assetic.source_watcher:
         class: %apnet.assetic.source_watcher.class%
+        arguments:
+            - @apnet.assetic.source_cache
+
+    # SourceCode watcher cache warmer
+    apnet.assetic.source_cache.warmer:
+        class: %apnet.assetic.source_cache.warmer.class%
+        arguments:
+            - @apnet.assetic.source_watcher
+        tags:
+            - { name: kernel.cache_warmer }
 
     # kernel.request event listener
     apnet.assetic.listener.asset_watcher:

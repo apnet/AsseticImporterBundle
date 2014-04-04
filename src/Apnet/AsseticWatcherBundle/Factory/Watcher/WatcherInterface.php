@@ -15,13 +15,22 @@ interface WatcherInterface
 {
 
   /**
-   * Set config path
+   * Get dependencies
+   *
+   * @param string $configPath Path to config file
+   *
+   * @return array
+   */
+  public function getChildren($configPath);
+
+  /**
+   * Run compilation
    *
    * @param string $configPath Path to config file
    *
    * @return null
    */
-  public function addConfigPath($configPath);
+  public function compile($configPath);
 
   /**
    * Get watcher type
