@@ -6,11 +6,11 @@
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-namespace Apnet\AsseticImporterBundle\Listener;
+namespace Apnet\AsseticWatcherBundle\Listener;
 
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
-use Apnet\AsseticImporterBundle\Factory\SourceCodeWatcher;
+use Apnet\AsseticWatcherBundle\Factory\SourceCodeWatcher;
 
 /**
  * Listener for kernel.request event

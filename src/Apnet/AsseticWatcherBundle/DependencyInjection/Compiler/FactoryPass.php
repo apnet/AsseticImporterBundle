@@ -6,7 +6,7 @@
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-namespace Apnet\AsseticImporterBundle\DependencyInjection\Compiler;
+namespace Apnet\AsseticWatcherBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\Reference;
 /**
  * Adds services tagged as watchers to list
  */
-class SourceCodeWatcherPass implements CompilerPassInterface
+class FactoryPass implements CompilerPassInterface
 {
 
   /**

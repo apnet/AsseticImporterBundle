@@ -1,0 +1,17 @@
+parameters:
+    apnet.assetic.source_watcher.class: Apnet\AsseticWatcherBundle\Factory\SourceCodeWatcher
+    apnet.assetic.listener.asset_watcher.class: Apnet\AsseticWatcherBundle\Listener\KernelRequestListener
+
+services:
+    # Asset watcher factory
+    apnet.assetic.source_watcher:
+        class: %apnet.assetic.source_watcher.class%
+
+    # kernel.request event listener
+    apnet.assetic.listener.asset_watcher:
+        class: %apnet.assetic.listener.asset_watcher.class%
+        arguments:
+            - @apnet.assetic.source_watcher
+            - %kernel.debug%
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: compile }

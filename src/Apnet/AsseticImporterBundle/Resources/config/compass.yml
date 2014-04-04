@@ -1,7 +1,6 @@
 parameters:
     apnet.assetic.importer_parser.compass.class: Apnet\AsseticImporterBundle\Parser\CompassConfigParser
     apnet.assetic.importer.compass.class: Apnet\AsseticImporterBundle\Factory\Importer\CompassImporter
-    apnet.assetic.source_watcher.compass.class: Apnet\AsseticImporterBundle\Factory\Watcher\CompassWatcher
 
 services:
     # config.rb parser
@@ -21,11 +20,3 @@ services:
         factory_method: load
         public: false
         abstract: true
-
-    # config.rb watcher
-    apnet.assetic.source_watcher.compass:
-        class: %apnet.assetic.source_watcher.compass.class%
-        arguments:
-            - @apnet.assetic.importer_parser.compass
-        tags:
-            - { name: apnet.assetic.source_watcher }

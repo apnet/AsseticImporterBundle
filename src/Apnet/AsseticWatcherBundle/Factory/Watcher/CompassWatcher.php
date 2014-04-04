@@ -6,7 +6,7 @@
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-namespace Apnet\AsseticImporterBundle\Factory\Watcher;
+namespace Apnet\AsseticWatcherBundle\Factory\Watcher;
 
 use Apnet\AsseticImporterBundle\Parser\ParserInterface;
 
