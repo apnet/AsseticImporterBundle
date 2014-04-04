@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\Reference;
 /**
  * Adds services tagged as watchers to list
  */
-class WatchersPass implements CompilerPassInterface
+class SourceCodeWatcherPass implements CompilerPassInterface
 {
 
   /**
@@ -23,9 +23,9 @@ class WatchersPass implements CompilerPassInterface
    */
   public function process(ContainerBuilder $container)
   {
-    $collection = $container->getDefinition('apnet.assetic.asset_watcher');
+    $collection = $container->getDefinition('apnet.assetic.source_watcher');
 
-    $assets = $container->findTaggedServiceIds('apnet.assetic.asset_watcher');
+    $assets = $container->findTaggedServiceIds('apnet.assetic.source_watcher');
     foreach ($assets as $id => $tagAttributes) {
       $collection->addMethodCall('addWatcher', array(new Reference($id)));
     }

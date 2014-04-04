@@ -11,7 +11,7 @@ namespace Apnet\AsseticImporterBundle\Factory;
 /**
  * Asset watcher
  */
-class AssetWatcher
+class SourceCodeWatcher
 {
 
   /**
@@ -44,17 +44,27 @@ class AssetWatcher
   /**
    * Add config path to watch
    *
-   * @param string $config Path to config file
-   * @param string $name   Watcher name
+   * @param string $configPath Path to config file
+   * @param string $name       Watcher name
    *
    * @return null
    */
-  public function addConfig($config, $name)
+  public function addConfig($configPath, $name)
   {
     if (isset($this->_watchers[$name])) {
-      $watcher = $this->_watchers[$name];
-      // @todo add $config to watcher
+      $this->_watchers[$name]->addConfigPath($configPath);
     }
+  }
+
+  /**
+   * Compile watchers' files
+   *
+   * @return null
+   */
+  public function compile()
+  {
+    // @todo compile watchers' files. Use "Caching based on resources"
+    // http://symfony.com/doc/current/components/config/caching.html
   }
 
 }

@@ -31,7 +31,7 @@ class CollectionResourcePass implements CompilerPassInterface
       $collection->addMethodCall('addAssetMapper', array(new Reference($id)));
     }
 
-    $watcher = $container->getDefinition('apnet.assetic.asset_watcher');
+    $watcher = $container->getDefinition('apnet.assetic.source_watcher');
 
     $parameterBag = $container->getParameterBag();
     $configs = $container->findTaggedServiceIds('apnet.assetic.config_mapper');

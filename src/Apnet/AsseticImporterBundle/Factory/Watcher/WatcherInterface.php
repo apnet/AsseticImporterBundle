@@ -15,6 +15,15 @@ interface WatcherInterface
 {
 
   /**
+   * Set config path
+   *
+   * @param string $configPath Path to config file
+   *
+   * @return null
+   */
+  public function addConfigPath($configPath);
+
+  /**
    * Get watcher type
    *
    * @return string
