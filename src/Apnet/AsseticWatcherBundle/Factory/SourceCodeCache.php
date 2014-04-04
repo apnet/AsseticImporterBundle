@@ -45,41 +45,53 @@ class SourceCodeCache
   }
 
   /**
-   * Refresh cache for $configPath if it is not fresh
+   * Checks if the cache is still fresh.
    *
    * @param string $configPath Path to config file
    * @param array  $files      List of files or directories
    *
    * @return bool
    */
-  public function refresh($configPath, array $files)
+  public function isFresh($configPath, array $files)
   {
     $action = true;
 
     $cache = $this->_getCache($configPath);
     if ($cache->isFresh()) {
       $cachedResources = include($cache);
+      sort($files);
       if ($cachedResources == $files) {
         $action = false;
       }
     }
-    if ($action) {
-      $resources = array();
+    return $action;
+  }
 
-      sort($files);
-      foreach ($files as $path) {
-        if (is_dir($path)) {
-          $resources[] = new DirectoryResource($path);
-        } elseif (is_file($path)) {
-          $resources[] = new FileResource($path);
-        }
+  /**
+   * Write cache for $configPath
+   *
+   * @param string $configPath Path to config file
+   * @param array  $files      List of files or directories
+   *
+   * @return bool
+   */
+  public function write($configPath, array $files)
+  {
+    $resources = array();
+
+    sort($files);
+    foreach ($files as $path) {
+      if (is_dir($path)) {
+        $resources[] = new DirectoryResource($path);
+      } elseif (is_file($path)) {
+        $resources[] = new FileResource($path);
       }
-
-      $code = "<?php return " . var_export($files, true) . ";";
-      $cache->write($code, $resources);
     }
 
-    return $action;
+    $code = "<?php return " . var_export($files, true) . ";";
+
+    $this->_getCache($configPath)
+      ->write($code, $resources);
   }
 
   /**

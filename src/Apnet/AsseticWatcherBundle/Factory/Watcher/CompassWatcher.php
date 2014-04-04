@@ -9,6 +9,7 @@
 namespace Apnet\AsseticWatcherBundle\Factory\Watcher;
 
 use Apnet\AsseticImporterBundle\Parser\ParserInterface;
+use Symfony\Component\Process\Process;
 
 /**
  * Compass source files watcher
@@ -51,7 +52,11 @@ class CompassWatcher implements WatcherInterface
    */
   public function compile($configPath)
   {
-
+    $process = new Process("compass compile", dirname($configPath));
+    $process->run();
+    if (!$process->isSuccessful()) {
+      throw new WatcherCompileException($process->getErrorOutput());
+    }
   }
 
   /**

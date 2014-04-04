@@ -8,10 +8,6 @@
  */
 namespace Apnet\AsseticWatcherBundle\Factory;
 
-use Symfony\Component\Config\ConfigCache;
-use Symfony\Component\Config\Resource\FileResource;
-use Symfony\Component\Config\Resource\DirectoryResource;
-
 /**
  * Asset watcher
  */
@@ -86,8 +82,9 @@ class SourceCodeWatcher
       if (isset($this->_configs[$name])) {
         foreach ($this->_configs[$name] as $configPath) {
           $files = $watcher->getChildren($configPath);
-          if ($this->_cache->refresh($configPath, $files)) {
+          if ($this->_cache->isFresh($configPath, $files)) {
             $watcher->compile($configPath);
+            $this->_cache->write($configPath, $files);
           }
         }
       }

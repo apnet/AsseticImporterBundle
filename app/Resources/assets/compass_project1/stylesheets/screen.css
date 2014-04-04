@@ -1,2 +1,3 @@
-@font-face { font-family: "font-name"; src: url('../fonts/font-file.eot?1396369943'); src: url('../fonts/font-file.eot?&1396369943#iefix') format('embedded-opentype'), url('../fonts/font-file.woff?1396369951') format('woff'), url('../fonts/font-file.ttf?1396369949') format('truetype'), url('../fonts/font-file.svg?1396369946') format('svg'); font-weight: normal; }
-.bg { background: url('../images/compass-logo-small.png?1396370197'); font-weight: bold; }
+@font-face { font-family: "font-name"; src: url('../fonts/font-file.eot'); src: url('../fonts/font-file.eot?#iefix') format('eot'), url('../fonts/font-file.woff') format('woff'), url('../fonts/font-file.ttf') format('truetype'), url('../fonts/font-file.svg') format('svg'); font-weight: normal; }
+
+.bg { background: url('../images/compass-logo-small.png'); font-weight: bold; }
