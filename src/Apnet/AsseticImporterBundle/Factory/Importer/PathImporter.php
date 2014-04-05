@@ -26,7 +26,6 @@ class PathImporter
    */
   public function load($sourcePath, $targetPath)
   {
-    /* @todo validate $sourcePath & $targetPath */
     $mapper = new AssetMapper();
     $mapper->add($sourcePath, $targetPath);
 

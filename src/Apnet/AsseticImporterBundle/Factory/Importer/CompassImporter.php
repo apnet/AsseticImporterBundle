@@ -49,13 +49,10 @@ class CompassImporter
    */
   public function load($configPath, $targetPath)
   {
-    /* @todo validate $configPath */
     $mapper = new AssetMapper();
-
-    $input = file_get_contents($configPath);
     $configDir = dirname($configPath);
 
-    $parameters = $this->_parser->parse($input);
+    $parameters = $this->_parser->load($configPath);
     foreach ($parameters as $key => $value) {
       if (in_array($key, $this->_dirs)) {
         $mapper->add(

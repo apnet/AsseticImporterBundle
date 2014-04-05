@@ -6,13 +6,12 @@
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-use Apnet\FunctionalTestBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
 /**
  * Bundle test kernel
  */
-class AppKernel extends FunctionalTestBundle\HttpKernel\AppKernel
+class AppKernel extends Apnet\FunctionalTestBundle\HttpKernel\AppKernel
 {
 
   /**
@@ -27,7 +26,8 @@ class AppKernel extends FunctionalTestBundle\HttpKernel\AppKernel
       new Symfony\Bundle\MonologBundle\MonologBundle(),
 
       new Apnet\AsseticImporterBundle\ApnetAsseticImporterBundle(),
-      new FunctionalTestBundle\ApnetFunctionalTestBundle()
+      new Apnet\AsseticWatcherBundle\ApnetAsseticWatcherBundle(),
+      new Apnet\FunctionalTestBundle\ApnetFunctionalTestBundle()
     );
   }
 

@@ -6,7 +6,7 @@
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-namespace Apnet\AsseticImporterBundle\DependencyInjection;
+namespace Apnet\AsseticWatcherBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class ApnetAsseticImporterExtension extends Extension
+class ApnetAsseticWatcherExtension extends Extension
 {
 
   /**
@@ -34,7 +34,6 @@ class ApnetAsseticImporterExtension extends Extension
       new FileLocator(__DIR__ . '/../Resources/config')
     );
     $loader->load('services.yml');
-    $loader->load('path.yml');
     $loader->load('compass.yml');
   }
 

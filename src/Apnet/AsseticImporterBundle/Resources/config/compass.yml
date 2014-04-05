@@ -1,0 +1,22 @@
+parameters:
+    apnet.assetic.importer_parser.compass.class: Apnet\AsseticImporterBundle\Parser\CompassConfigParser
+    apnet.assetic.importer.compass.class: Apnet\AsseticImporterBundle\Factory\Importer\CompassImporter
+
+services:
+    # config.rb parser
+    apnet.assetic.importer_parser.compass:
+        class: %apnet.assetic.importer_parser.compass.class%
+
+    # config.rb importer
+    apnet.assetic.importer.compass:
+        class: %apnet.assetic.importer.compass.class%
+        arguments:
+            - @apnet.assetic.importer_parser.compass
+
+    # importer_compass service templae
+    assetic.importer_compass:
+        class: %apnet.assetic.asset_mapper.class%
+        factory_service: apnet.assetic.importer.compass
+        factory_method: load
+        public: false
+        abstract: true
