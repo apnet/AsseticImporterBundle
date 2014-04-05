@@ -52,10 +52,20 @@ class CompassWatcher implements WatcherInterface
    */
   public function compile($configPath)
   {
-    $process = new Process("compass compile", dirname($configPath));
+    $process = new Process(
+      "compass compile --relative-assets --no-line-comments --boring",
+      dirname($configPath)
+    );
     $process->run();
     if (!$process->isSuccessful()) {
-      throw new WatcherCompileException($process->getErrorOutput());
+      $output = $process->getOutput();
+
+      $matches = null;
+      foreach (explode(PHP_EOL, $output) as $line) {
+        if (preg_match('/^(\s*error\s(.*))/i', $line, $matches)) {
+          throw new WatcherCompileException($configPath . "\n\n" . $matches[2]);
+        }
+      }
     }
   }
 
