@@ -30,6 +30,7 @@ class Configuration implements ConfigurationInterface
     $rootNode
       ->children()
       /**/->scalarNode('compiler_root')->isRequired()->end()
+      /**/->booleanNode('enabled')->defaultFalse()->end()
       ->end();
 
     return $treeBuilder;

@@ -34,3 +34,4 @@ assetic:
 # Apnet Assetic Watcher Bundle
 apnet_assetic_watcher:
     compiler_root: %kernel.root_dir%/../src
+    enabled: true

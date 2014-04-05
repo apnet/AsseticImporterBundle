@@ -28,6 +28,7 @@ services:
         calls:
             - [ setCompilerRoot, [ %apnet_assetic_watcher.compiler_root% ] ]
             - [ setEnv, [ %kernel.environment% ] ]
+            - [ setEnabled, [ %apnet_assetic_watcher.enabled% ]]
 
     # SourceCode watcher cache warmer
     apnet.assetic.source_cache.warmer:

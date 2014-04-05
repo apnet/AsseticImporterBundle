@@ -40,6 +40,11 @@ class SourceCodeWatcher
   private $_env;
 
   /**
+   * @var bool
+   */
+  private $_enabled;
+
+  /**
    * Public constructor
    *
    * @param SourceCodeCache $cache Cache factory
@@ -51,6 +56,7 @@ class SourceCodeWatcher
     $this->_cache = $cache;
     $this->_root = null;
     $this->_env = null;
+    $this->_enabled = true;
   }
 
   /**
@@ -78,6 +84,18 @@ class SourceCodeWatcher
   public function setEnv($env)
   {
     $this->_env = $env;
+  }
+
+  /**
+   * Set enabled
+   *
+   * @param bool $enabled Enabled
+   *
+   * @return null
+   */
+  public function setEnabled($enabled)
+  {
+    $this->_enabled = !!$enabled;
   }
 
   /**
@@ -120,7 +138,7 @@ class SourceCodeWatcher
    */
   public function compile()
   {
-    if ($this->_env !== "dev") {
+    if (!$this->_enabled || $this->_env !== "dev") {
       return;
     }
     foreach ($this->_watchers as $name => $watcher) {

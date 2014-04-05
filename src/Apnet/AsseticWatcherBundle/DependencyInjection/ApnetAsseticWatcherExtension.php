@@ -32,6 +32,9 @@ class ApnetAsseticWatcherExtension extends Extension
     $container->setParameter(
       'apnet_assetic_watcher.compiler_root', $config['compiler_root']
     );
+    $container->setParameter(
+      'apnet_assetic_watcher.enabled', $config['enabled']
+    );
 
     $loader = new Loader\YamlFileLoader(
       $container,
