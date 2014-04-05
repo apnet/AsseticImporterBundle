@@ -25,6 +25,9 @@ services:
         class: %apnet.assetic.source_watcher.class%
         arguments:
             - @apnet.assetic.source_cache
+        calls:
+            - [ setCompilerRoot, [ %apnet_assetic_watcher.compiler_root% ] ]
+            - [ setEnv, [ %kernel.environment% ] ]
 
     # SourceCode watcher cache warmer
     apnet.assetic.source_cache.warmer:

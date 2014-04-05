@@ -27,7 +27,11 @@ class ApnetAsseticWatcherExtension extends Extension
   public function load(array $configs, ContainerBuilder $container)
   {
     $configuration = new Configuration();
-    /* $config = */$this->processConfiguration($configuration, $configs);
+    $config = $this->processConfiguration($configuration, $configs);
+
+    $container->setParameter(
+      'apnet_assetic_watcher.compiler_root', $config['compiler_root']
+    );
 
     $loader = new Loader\YamlFileLoader(
       $container,

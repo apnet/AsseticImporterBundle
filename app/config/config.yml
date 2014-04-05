@@ -30,3 +30,7 @@ twig:
 # Assetic Configuration
 assetic:
     use_controller: %kernel.debug%
+
+# Apnet Assetic Watcher Bundle
+apnet_assetic_watcher:
+    compiler_root: %kernel.root_dir%/../src

@@ -30,6 +30,16 @@ class SourceCodeWatcher
   private $_cache;
 
   /**
+   * @var string
+   */
+  private $_root;
+
+  /**
+   * @var string
+   */
+  private $_env;
+
+  /**
    * Public constructor
    *
    * @param SourceCodeCache $cache Cache factory
@@ -39,6 +49,35 @@ class SourceCodeWatcher
     $this->_watchers = array();
     $this->_configs = array();
     $this->_cache = $cache;
+    $this->_root = null;
+    $this->_env = null;
+  }
+
+  /**
+   * Set compiler root
+   *
+   * @param string $path Path
+   *
+   * @return null
+   */
+  public function setCompilerRoot($path)
+  {
+    $path = realpath($path);
+    if (is_dir($path)) {
+      $this->_root = $path;
+    }
+  }
+
+  /**
+   * Set environment
+   *
+   * @param string $env Environment
+   *
+   * @return null
+   */
+  public function setEnv($env)
+  {
+    $this->_env = $env;
   }
 
   /**
@@ -65,6 +104,9 @@ class SourceCodeWatcher
    */
   public function addConfig($config, $watcher)
   {
+    if (!is_null($this->_root) && strpos($config, $this->_root) !== 0) {
+      return;
+    }
     if (!isset($this->_configs[$watcher])) {
       $this->_configs[$watcher] = array();
     }
@@ -78,6 +120,9 @@ class SourceCodeWatcher
    */
   public function compile()
   {
+    if ($this->_env !== "dev") {
+      return;
+    }
     foreach ($this->_watchers as $name => $watcher) {
       if (isset($this->_configs[$name])) {
         foreach ($this->_configs[$name] as $configPath) {
