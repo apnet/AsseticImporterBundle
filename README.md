@@ -67,6 +67,16 @@ After these changes two css files will be accessible via `/app_dev.php`
 
 All files will be dumped with `assetic:dump` command.
 
+Twig
+----
+
+To include your CSS into Twig template use **imported_asset** function:
+
+``` html
+<link href="{{ imported_asset('example1/style1.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ imported_asset('example2/stylesheets/style2.css') }}" rel="stylesheet" type="text/css" />
+```
+
 Assetic Watcher Bundle
 ======================
 
