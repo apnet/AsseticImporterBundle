@@ -27,7 +27,9 @@ class AppKernel extends Apnet\FunctionalTestBundle\HttpKernel\AppKernel
 
       new Apnet\AsseticImporterBundle\ApnetAsseticImporterBundle(),
       new Apnet\AsseticWatcherBundle\ApnetAsseticWatcherBundle(),
-      new Apnet\FunctionalTestBundle\ApnetFunctionalTestBundle()
+      new Apnet\FunctionalTestBundle\ApnetFunctionalTestBundle(),
+
+      new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
     );
   }
 

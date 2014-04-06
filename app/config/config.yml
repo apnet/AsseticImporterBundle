@@ -26,6 +26,8 @@ framework:
 twig:
     debug: %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+        readme_md: %kernel.root_dir%/../README.md
 
 # Assetic Configuration
 assetic:
@@ -34,8 +36,8 @@ assetic:
 apnet_assetic_importer:
     assets:
         compass_project2:
-            source: %kernel.root_dir%/Resources/assets/compass_project2/config.rb
-            target: scss_project2
+            source: %kernel.root_dir%/Resources/assets/readme_md/config.rb
+            target: readme_md
             importer: compass
             watcher: true
 
