@@ -122,7 +122,7 @@ class SourceCodeWatcher
    */
   public function addConfig($config, $watcher)
   {
-    if (!is_null($this->_root) && strpos($config, $this->_root) !== 0) {
+    if (is_null($this->_root) || strpos($config, $this->_root) !== 0) {
       return;
     }
     if (!isset($this->_configs[$watcher])) {
