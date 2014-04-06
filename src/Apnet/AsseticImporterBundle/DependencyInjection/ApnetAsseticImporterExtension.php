@@ -9,6 +9,7 @@
 namespace Apnet\AsseticImporterBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
@@ -27,7 +28,41 @@ class ApnetAsseticImporterExtension extends Extension
   public function load(array $configs, ContainerBuilder $container)
   {
     $configuration = new Configuration();
-    /* $config = */$this->processConfiguration($configuration, $configs);
+    $config = $this->processConfiguration($configuration, $configs);
+
+    foreach ($config["assets"] as $assetName => $asset) {
+      $importer = $asset["importer"];
+      if (is_null($importer)) {
+        $importer = "path";
+      }
+
+      $importerDefinition = new DefinitionDecorator("assetic.importer_" . $importer);
+
+      $sourcePath = $asset["source"];
+      if (is_null($asset["target"])) {
+        $targetPath = $assetName;
+      } else {
+        $targetPath = $asset["target"];
+      }
+      $importerDefinition->setArguments(
+        array($sourcePath, $targetPath)
+      );
+
+      $tagAttributes = array();
+      if ($importer == "path") {
+        $tagName = "apnet.assetic.asset_mapper";
+      } else {
+        $tagName = "apnet.assetic.config_mapper";
+        if ($asset["watcher"]) {
+          $tagAttributes["watcher"] = $importer;
+        }
+      }
+      $importerDefinition->addTag($tagName, $tagAttributes);
+
+      $container->setDefinition(
+        "apnet.assetic.importer.config." . $importer, $importerDefinition
+      );
+    }
 
     $loader = new Loader\YamlFileLoader(
       $container,

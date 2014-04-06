@@ -25,11 +25,24 @@ class Configuration implements ConfigurationInterface
   public function getConfigTreeBuilder()
   {
     $treeBuilder = new TreeBuilder();
-    /* $rootNode = */$treeBuilder->root('apnet_assetic');
+    $rootNode = $treeBuilder->root('apnet_assetic_importer');
 
-    // Here you should define the parameters that are allowed to
-    // configure your bundle. See the documentation linked above for
-    // more information on that topic.
+    $rootNode
+      ->children()
+      /**/->arrayNode('assets')
+      /*  */->addDefaultChildrenIfNoneSet(array())
+      /*  */->requiresAtLeastOneElement()
+      /*  */->useAttributeAsKey('name')
+      /*  */->prototype('array')
+      /*    */->children()
+      /*      */->scalarNode('source')->isRequired()->end()
+      /*      */->scalarNode('target')->defaultNull()->end()
+      /*      */->scalarNode('importer')->defaultValue('path')->end()
+      /*      */->booleanNode('watcher')->defaultFalse()->end()
+      /*    */->end()
+      /*  */->end()
+      /**/->end()
+      ->end();
 
     return $treeBuilder;
   }
