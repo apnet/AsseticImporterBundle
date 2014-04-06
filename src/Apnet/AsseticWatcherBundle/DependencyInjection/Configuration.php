@@ -29,7 +29,7 @@ class Configuration implements ConfigurationInterface
 
     $rootNode
       ->children()
-      /**/->scalarNode('compiler_root')->isRequired()->end()
+      /**/->scalarNode('compiler_root')->defaultNull()->end()
       /**/->booleanNode('enabled')->defaultFalse()->end()
       ->end();
 

@@ -1,10 +1,11 @@
-<table border="1">
-    <tr>
-        <td>
-            <code>{{ '{{' }} imported_asset('test2/style2.css') {{ '}}'}}</code>
-        </td>
-        <td>
-            <code>{{ imported_asset('test2/style2.css') }}</code>
-        </td>
-    </tr>
-</table>
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="{{ imported_asset('readme_md/stylesheets/screen.css') }}" media="screen,projection" rel="stylesheet" type="text/css" />
+    <link href="{{ imported_asset('readme_md/stylesheets/print.css') }}" media="print" rel="stylesheet" type="text/css" />
+    <!--[if lt IE 8]><link href="{{ imported_asset('readme_md/stylesheets/ie.css') }}" media="screen,projection" rel="stylesheet" type="text/css" /><![endif]-->
+</head>
+<body>
+{{ file_get_contents(readme_md)|raw|markdown }}
+</body>
+</html>
