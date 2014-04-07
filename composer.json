@@ -3,7 +3,7 @@
     "description" : "Integrates resource projects into Symfony2",
     "keywords" : ["compass", "sass", "css", "scss", "assetic"],
     "type" : "symfony-bundle",
-    "license" : "GPL3",
+    "license" : "MIT",
     "authors" : [
         {
             "name" : "Andrey F. Mindubaev",
