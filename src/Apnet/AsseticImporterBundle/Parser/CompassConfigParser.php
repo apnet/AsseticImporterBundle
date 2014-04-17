@@ -34,6 +34,12 @@ class CompassConfigParser implements ParserInterface
 
       if (!$lexer->moveNext()) {
         break;
+      } elseif ($name == 'require') {
+        if ($lexer->lookahead["type"] == CompassConfigLexer::T_STRING) {
+          continue;
+        } else {
+          break;
+        }
       } elseif ($lexer->lookahead["type"] != CompassConfigLexer::T_EQUALS) {
         break;
       } elseif (!$lexer->moveNext()) {

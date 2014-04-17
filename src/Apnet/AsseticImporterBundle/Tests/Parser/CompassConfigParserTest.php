@@ -51,29 +51,30 @@ class CompassConfigParserTest extends \PHPUnit_Framework_TestCase
    */
   public function parseDataProvider()
   {
+    $input = array();
+    $input[0] = <<<EOF
+require 'bootstrap'
+# comment
+var1='a'
+var2="b"
+var3=:var1
+var4=1
+var5=1.2
+vae
+var6=2
+EOF;
+
+    $data = array();
+    $data[0] = array(
+      "var1" => "a",
+      "var2" => "b",
+      "var3" => "a",
+      "var4" => 1,
+      "var5" => 1.2
+    );
+
     return array(
-      array(
-        implode(
-          PHP_EOL,
-          array(
-            "# comment",
-            "var1='a'",
-            "var2=\"b\"",
-            "var3=:var1",
-            "var4=1",
-            "var5=1.2",
-            "vae",
-            "var6=2"
-          )
-        ),
-        array(
-          "var1" => "a",
-          "var2" => "b",
-          "var3" => "a",
-          "var4" => 1,
-          "var5" => 1.2
-        )
-      )
+      array($input[0], $data[0])
     );
   }
 
