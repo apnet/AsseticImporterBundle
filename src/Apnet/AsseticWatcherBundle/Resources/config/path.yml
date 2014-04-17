@@ -1,0 +1,9 @@
+parameters:
+    apnet.assetic.source_watcher.path.class: Apnet\AsseticWatcherBundle\Factory\Watcher\PathWatcher
+
+services:
+    # path-with-no-action watcher
+    apnet.assetic.source_watcher.path:
+        class: %apnet.assetic.source_watcher.path.class%
+        tags:
+            - { name: apnet.assetic.source_watcher }

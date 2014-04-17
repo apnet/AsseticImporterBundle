@@ -42,6 +42,7 @@ class ApnetAsseticWatcherExtension extends Extension
     );
     $loader->load('services.yml');
     $loader->load('compass.yml');
+    $loader->load('path.yml');
   }
 
 }
