@@ -23,6 +23,14 @@ services:
         tags:
             - { name: apnet.assetic.config_mapper, watcher: compass }
 
+    apnet.assetic.importer.pre_project1:
+        parent: assetic.importer_pre
+        arguments:
+            - %kernel.root_dir%/Resources/assets/pre_project1/config.yml
+            - filters_project1
+        tags:
+            - { name: apnet.assetic.config_mapper, watcher: pre }
+
     # Twig extension
     apnet.dev.twig_extension:
         class: Apnet\Dev\TwigExtension

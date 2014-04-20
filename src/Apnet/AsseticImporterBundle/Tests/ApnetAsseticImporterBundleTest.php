@@ -66,6 +66,10 @@ class ApnetAsseticImporterBundleTest extends WebTestCase
         "/assets/readme_md/stylesheets/screen.css",
         "/readme_md/stylesheets/screen.css"
       ),
+      array(
+        "/assets/pre_project1/destination/script.js",
+        "/filters_project1/destination/script.js"
+      )
     );
   }
 

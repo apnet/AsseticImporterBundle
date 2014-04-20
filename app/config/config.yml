@@ -32,6 +32,11 @@ twig:
 # Assetic Configuration
 assetic:
     use_controller: %kernel.debug%
+    filters:
+        yui_css:
+            jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar
+        yui_js:
+            jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar
 
 apnet_assetic_importer:
     assets:

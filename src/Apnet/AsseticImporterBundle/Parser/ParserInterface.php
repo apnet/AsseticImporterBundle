@@ -24,7 +24,7 @@ interface ParserInterface
   public function parse($input);
 
   /**
-   * Parse input text and return project config data
+   * Parse input file and return project config data
    *
    * @param string $path Input file
    *

@@ -9,7 +9,7 @@
 namespace Apnet\AsseticImporterBundle\Tests\Factory\Importer;
 
 use Apnet\AsseticImporterBundle\Factory\Importer\CompassImporter;
-use Apnet\AsseticImporterBundle\Parser\CompassConfigParser;
+use Apnet\AsseticImporterBundle\Parser\CompassConfig\Parser as CompassConfigParser;
 
 /**
  * Test compass importer

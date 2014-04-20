@@ -30,7 +30,6 @@ class CompassWatcher implements WatcherInterface
   public function __construct(ParserInterface $parser)
   {
     $this->_parser = $parser;
-    $this->_config = array();
   }
 
   /**

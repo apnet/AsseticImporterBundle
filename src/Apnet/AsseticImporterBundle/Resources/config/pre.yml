@@ -1,0 +1,22 @@
+parameters:
+    apnet.assetic.importer_parser.pre.class: Apnet\AsseticImporterBundle\Parser\PreConfig\Parser
+    apnet.assetic.importer.pre.class: Apnet\AsseticImporterBundle\Factory\Importer\PreImporter
+
+services:
+    # pre .yml files parser
+    apnet.assetic.importer_parser.pre:
+        class: %apnet.assetic.importer_parser.pre.class%
+
+    # pre .yml importer
+    apnet.assetic.importer.pre:
+        class: %apnet.assetic.importer.pre.class%
+        arguments:
+            - @apnet.assetic.importer_parser.pre
+
+    # importer_pre service template
+    assetic.importer_pre:
+        class: %apnet.assetic.asset_mapper.class%
+        factory_service: apnet.assetic.importer.pre
+        factory_method: load
+        public: false
+        abstract: true

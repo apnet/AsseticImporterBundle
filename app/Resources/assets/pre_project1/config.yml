@@ -1,0 +1,9 @@
+assets:
+    qwe:
+        inputs:
+            - source/script1.js
+            - source/script2.js
+        filters:
+            - yui_js
+        options:
+            output: destination/script.js
