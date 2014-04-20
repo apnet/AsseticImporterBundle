@@ -41,8 +41,9 @@ class ApnetAsseticWatcherExtension extends Extension
       new FileLocator(__DIR__ . '/../Resources/config')
     );
     $loader->load('services.yml');
-    $loader->load('compass.yml');
     $loader->load('path.yml');
+    $loader->load('compass.yml');
+    $loader->load('pre.yml');
   }
 
 }

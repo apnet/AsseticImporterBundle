@@ -1,0 +1,12 @@
+parameters:
+    apnet.assetic.source_watcher.pre.class: Apnet\AsseticWatcherBundle\Factory\Watcher\PreWatcher
+
+services:
+    # Config .yml watcher
+    apnet.assetic.source_watcher.pre:
+        class: %apnet.assetic.source_watcher.pre.class%
+        arguments:
+            - @apnet.assetic.importer_parser.pre
+            - @assetic.filter_manager
+        tags:
+            - { name: apnet.assetic.source_watcher }

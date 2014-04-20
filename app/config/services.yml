@@ -29,7 +29,7 @@ services:
             - %kernel.root_dir%/Resources/assets/pre_project1/config.yml
             - filters_project1
         tags:
-            - { name: apnet.assetic.config_mapper }
+            - { name: apnet.assetic.config_mapper, watcher: pre }
 
     # Twig extension
     apnet.dev.twig_extension:
