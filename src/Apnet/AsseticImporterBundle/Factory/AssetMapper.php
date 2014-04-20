@@ -75,7 +75,7 @@ class AssetMapper
           array("output" => $target)
         );
 
-        $this->_formulae[] = $formulae;
+        $this->append($formulae);
       }
     }
   }
