@@ -6,14 +6,15 @@
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-namespace Apnet\AsseticImporterBundle\Parser;
+namespace Apnet\AsseticImporterBundle\Parser\CompassConfig;
 
+use Apnet\AsseticImporterBundle\Parser\ParserInterface;
 use Apnet\AsseticImporterBundle\Lexer\CompassConfigLexer;
 
 /**
  * Simple parser for config.rb file
  */
-class CompassConfigParser implements ParserInterface
+class Parser implements ParserInterface
 {
 
   /**

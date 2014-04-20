@@ -1,5 +1,5 @@
 parameters:
-    apnet.assetic.importer_parser.compass.class: Apnet\AsseticImporterBundle\Parser\CompassConfigParser
+    apnet.assetic.importer_parser.compass.class: Apnet\AsseticImporterBundle\Parser\CompassConfig\Parser
     apnet.assetic.importer.compass.class: Apnet\AsseticImporterBundle\Factory\Importer\CompassImporter
 
 services:

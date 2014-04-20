@@ -6,15 +6,15 @@
  * @author Andrey F. Mindubaev <covex.mobile@gmail.com>
  * @license http://opensource.org/licenses/MIT  MIT License
  */
-namespace Apnet\AsseticImporterBundle\Tests\Importer\Parser;
+namespace Apnet\AsseticImporterBundle\Tests\Importer\Parser\CompassConfig;
 
-use Apnet\AsseticImporterBundle\Parser\CompassConfigParser;
+use Apnet\AsseticImporterBundle\Parser\CompassConfig\Parser as CompassConfigParser;
 use Apnet\AsseticImporterBundle\Parser\ParserInterface;
 
 /**
  * Test simple parser for config.rb file
  */
-class CompassConfigParserTest extends \PHPUnit_Framework_TestCase
+class ParserTest extends \PHPUnit_Framework_TestCase
 {
 
   /**
