@@ -25,11 +25,19 @@ class PathImporterTest extends \PHPUnit_Framework_TestCase
   {
     $importer = new PathImporter();
 
-    $mapper = $importer->load(__DIR__, "qwerty");
+    $mapper = $importer->load(__DIR__ . "/_compass/css", "qwerty");
 
-    $this->assertEquals(1, sizeof($mapper));
+    $this->assertEquals(1, sizeof($mapper->getFormulae()));
+    $asset = $mapper->item(0);
+
     $this->assertEquals(
-      array(__DIR__, "qwerty"), $mapper->item(0)
+      array(__DIR__ . "/_compass/css/style.css"), $asset->getInputs()
+    );
+    $this->assertEquals(
+      array(), $asset->getFilters()
+    );
+    $this->assertEquals(
+      array("output" => "qwerty/style.css"), $asset->getOptions()
     );
   }
 

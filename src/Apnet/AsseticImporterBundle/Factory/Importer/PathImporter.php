@@ -27,7 +27,7 @@ class PathImporter
   public function load($sourcePath, $targetPath)
   {
     $mapper = new AssetMapper();
-    $mapper->add($sourcePath, $targetPath);
+    $mapper->map($sourcePath, $targetPath);
 
     return $mapper;
   }

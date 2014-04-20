@@ -9,7 +9,6 @@
 namespace Apnet\AsseticImporterBundle\Factory\Resource;
 
 use Apnet\AsseticImporterBundle\Factory\AssetMapper;
-use Symfony\Component\Finder;
 
 /**
  * A collection resource
@@ -59,32 +58,19 @@ class CollectionResource implements CollectionResourceInterface
    */
   public function addAssetMapper(AssetMapper $mapper)
   {
-    $items = array();
-
-    foreach ($mapper as $data) {
-      list($sourcePath, $targetPath) = $data;
-
-      if (file_exists($sourcePath)) {
-        if (is_file($sourcePath)) {
-          $items[$targetPath] = $sourcePath;
-        } elseif (is_dir($sourcePath)) {
-          $finder = new Finder\Finder();
-
-          foreach ($finder->in($sourcePath)->files() as $file) {
-            /* @var $file Finder\SplFileInfo */
-            $fileTargetPath = $targetPath . "/" . $file->getRelativePathname();
-            $items[$fileTargetPath] = $file->getPathname();
-          }
-        }
+    foreach ($mapper->getFormulae() as $data) {
+      $inputs = $data->getInputs();
+      if (!sizeof($inputs)) {
+        throw new \RuntimeException("Inputs was not set");
       }
-    }
-
-    foreach ($items as $target => $source) {
-      $inputs = array($source);
-
-      $name = $this->getFormulaeName($target);
-      $options = array("name" => $name, "output" => $target);
-      $this->_formulae[$name] = array($inputs, array(), $options);
+      $filters = $data->getFilters();
+      $options = $data->getOptions();
+      if (!isset($options["output"])) {
+        throw new \RuntimeException("'output' option was not set");
+      }
+      $name = $this->getFormulaeName($options["output"]);
+      $options["name"] = $name;
+      $this->_formulae[$name] = array($inputs, $filters, $options);
     }
   }
 

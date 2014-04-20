@@ -1,5 +1,7 @@
 css_dir = "css"
 sass_dir = "sass"
-javascripts_dir = "js"
-fonts_dir = "fonts"
-images_dir = "img"
+
+output_style = :compact
+relative_assets = true
+line_comments = false
+asset_cache_buster :none

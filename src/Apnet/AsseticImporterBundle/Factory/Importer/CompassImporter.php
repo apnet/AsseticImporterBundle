@@ -55,7 +55,7 @@ class CompassImporter
     $parameters = $this->_parser->load($configPath);
     foreach ($parameters as $key => $value) {
       if (in_array($key, $this->_dirs)) {
-        $mapper->add(
+        $mapper->map(
           $configDir . "/" . $value,
           $targetPath . "/" . $value
         );
