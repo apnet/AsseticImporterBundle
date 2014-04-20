@@ -8,54 +8,86 @@
  */
 namespace Apnet\AsseticImporterBundle\Factory;
 
+use Symfony\Component\Finder;
+
 /**
  * Asset mapper
  */
-class AssetMapper implements \IteratorAggregate, \Countable
+class AssetMapper
 {
 
   /**
-   * @var array
+   * @var AssetFormulae[]
    */
-  private $_relations;
+  private $_formulae;
 
   /**
    * Public constructor
    */
   public function __construct()
   {
-    $this->_relations = array();
+    $this->_formulae = array();
   }
 
   /**
-   * Add new relation between source and target paths
+   * Add new formulae
    *
-   * @param string $sourcePath Source path
-   * @param string $targetPath Target path
+   * @param AssetFormulae $formulae Formulae
    *
    * @return $this
    */
-  public function add($sourcePath, $targetPath)
+  public function append(AssetFormulae $formulae)
   {
-    $this->_relations[] = array($sourcePath, $targetPath);
+    $this->_formulae[] = $formulae;
 
     return $this;
   }
 
   /**
-   * {@inheritdoc}
+   * Map files from source to target path
+   *
+   * @param string $sourcePath Source path
+   * @param string $targetPath Target path
+   *
+   * @return null
    */
-  public function getIterator()
+  public function map($sourcePath, $targetPath)
   {
-    return new \ArrayIterator($this->_relations);
+    if (file_exists($sourcePath)) {
+      $items = array();
+      if (is_file($sourcePath)) {
+        $items[$targetPath] = $sourcePath;
+      } elseif (is_dir($sourcePath)) {
+        $finder = new Finder\Finder();
+        foreach ($finder->in($sourcePath)->files() as $file) {
+          /* @var $file Finder\SplFileInfo */
+          $fileTargetPath = $targetPath . "/" . $file->getRelativePathname();
+          $items[$fileTargetPath] = $file->getPathname();
+        }
+      }
+
+      foreach ($items as $target => $source) {
+        $formulae = new AssetFormulae();
+        $formulae->setInputs(
+          array($source)
+        );
+        $formulae->setOptions(
+          array("output" => $target)
+        );
+
+        $this->_formulae[] = $formulae;
+      }
+    }
   }
 
   /**
-   * {@inheritdoc}
+   * Get formulae list
+   *
+   * @return AssetFormulae[]
    */
-  public function count()
+  public function getFormulae()
   {
-    return sizeof($this->_relations);
+    return $this->_formulae;
   }
 
   /**
@@ -63,12 +95,12 @@ class AssetMapper implements \IteratorAggregate, \Countable
    *
    * @param integer $offset Item offset
    *
-   * @return array
+   * @return AssetFormulae|null
    */
   public function item($offset)
   {
-    if (isset($this->_relations[$offset])) {
-      $item = $this->_relations[$offset];
+    if (isset($this->_formulae[$offset])) {
+      $item = $this->_formulae[$offset];
     } else {
       $item = null;
     }

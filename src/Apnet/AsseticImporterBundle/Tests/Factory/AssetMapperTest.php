@@ -23,28 +23,35 @@ class AssetMapperTest extends \PHPUnit_Framework_TestCase
    */
   public function testObject()
   {
+    $fileOne = dirname(__FILE__) . "/_mapper/file1.txt";
+    $dirOne = dirname(__FILE__) . "/_mapper/dir1";
+    $fileTwo = $dirOne . "/file2.txt";
+
     $mapper = new AssetMapper();
-    $mapper->add("/tmp", "asdf");
+    $mapper->map($fileOne, "asdf");
+    $mapper->map($dirOne, "zxcv");
 
-    $mapperTwo = $mapper->add("/etc", "qwerty");
-    $this->assertEquals($mapper, $mapperTwo);
-
-    $actual = array();
-    foreach ($mapper as $key => $value) {
-      $actual[$key] = $value;
-    }
-
-    $itemOne = array("/tmp", "asdf");
-    $itemTwo = array("/etc", "qwerty");
-
+    $itemOne = $mapper->item(0);
     $this->assertEquals(
-      array($itemOne, $itemTwo), $actual
+      array($fileOne), $itemOne->getInputs()
+    );
+    $this->assertEquals(array(), $itemOne->getFilters());
+    $this->assertEquals(
+      array("output" => "asdf"), $itemOne->getOptions()
     );
 
-    $this->assertEquals(2, sizeof($mapper));
-    $this->assertEquals($itemOne, $mapper->item(0));
-    $this->assertEquals($itemTwo, $mapper->item(1));
-    $this->assertNull($mapper->item(2));
+    $itemTwo = $mapper->item(1);
+    $this->assertEquals(
+      array($fileTwo), $itemTwo->getInputs()
+    );
+    $this->assertEquals(array(), $itemTwo->getFilters());
+    $this->assertEquals(
+      array("output" => "zxcv/file2.txt"), $itemTwo->getOptions()
+    );
+
+    $this->assertEquals(
+      array($itemOne, $itemTwo), $mapper->getFormulae()
+    );
   }
 
 }

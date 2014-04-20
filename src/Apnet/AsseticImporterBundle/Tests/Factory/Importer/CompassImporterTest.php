@@ -29,10 +29,17 @@ class CompassImporterTest extends \PHPUnit_Framework_TestCase
 
     $mapper = $importer->load(__DIR__ . "/_compass/config.rb", "qwerty");
 
-    $this->assertEquals(4, sizeof($mapper));
+    $this->assertEquals(1, sizeof($mapper->getFormulae()));
+    $asset = $mapper->item(0);
+
     $this->assertEquals(
-      array(__DIR__ . "/_compass/css", "qwerty/css"),
-      $mapper->item(0)
+      array(__DIR__ . "/_compass/css/style.css"), $asset->getInputs()
+    );
+    $this->assertEquals(
+      array(), $asset->getFilters()
+    );
+    $this->assertEquals(
+      array("output" => "qwerty/css/style.css"), $asset->getOptions()
     );
   }
 
