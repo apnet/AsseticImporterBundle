@@ -1,0 +1,7 @@
+assets:
+    qwe:
+        inputs:
+            - source/script1.js
+            - source/script2.js
+        options:
+            output: destination/script.js
