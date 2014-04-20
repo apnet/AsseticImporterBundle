@@ -44,8 +44,7 @@ class PreWatcher implements WatcherInterface
   public function getChildren($configPath)
   {
     $children = array();
-    $parameters = $this->_loadConfig($configPath);
-    foreach ($parameters as $asset) {
+    foreach ($this->_loadConfig($configPath) as $asset) {
       foreach ($asset["inputs"] as $file) {
         if (substr($file, 0, 1) !== "/") { // Unix style
           $file = dirname($configPath) . "/" . $file;
@@ -62,14 +61,10 @@ class PreWatcher implements WatcherInterface
   public function compile($configPath)
   {
     $sourceRoot = dirname($configPath);
-
-    $parameters = $this->_loadConfig($configPath);
-    foreach ($parameters as $asset) {
+    foreach ($this->_loadConfig($configPath) as $asset) {
       if (!isset($asset["options"]["output"])) {
         continue;
       }
-      $destination = $sourceRoot . "/" . $asset["options"]["output"];
-      unset($asset["options"]["output"]);
 
       $assets = array();
       foreach ($asset["inputs"] as $input) {
@@ -82,7 +77,10 @@ class PreWatcher implements WatcherInterface
       }
       $collection = new AssetCollection($assets, $filters);
 
-      file_put_contents($destination, $collection->dump());
+      file_put_contents(
+        $sourceRoot . "/" . $asset["options"]["output"],
+        $collection->dump()
+      );
     }
   }
 
