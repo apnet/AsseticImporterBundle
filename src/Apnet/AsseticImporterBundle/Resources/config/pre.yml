@@ -1,0 +1,7 @@
+parameters:
+    apnet.assetic.importer_parser.pre.class: Apnet\AsseticImporterBundle\Parser\PreConfig\Parser
+
+services:
+    # pre .yml files parser
+    apnet.assetic.importer_parser.pre:
+        class: %apnet.assetic.importer_parser.pre.class%

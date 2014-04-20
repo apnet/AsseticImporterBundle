@@ -71,6 +71,7 @@ class ApnetAsseticImporterExtension extends Extension
     $loader->load('services.yml');
     $loader->load('path.yml');
     $loader->load('compass.yml');
+    $loader->load('pre.yml');
   }
 
 }
