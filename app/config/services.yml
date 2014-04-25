@@ -18,7 +18,7 @@ services:
     apnet.assetic.importer.compass_project1:
         parent: assetic.importer_compass
         arguments:
-            - %kernel.root_dir%/Resources/assets/compass_project1/config.rb
+            - %kernel.root_dir%/../app/../app/Resources/../Resources/assets/compass_project1/config.rb
             - scss_project1
         tags:
             - { name: apnet.assetic.config_mapper, watcher: compass }

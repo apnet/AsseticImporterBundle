@@ -7,6 +7,7 @@
  * @license http://opensource.org/licenses/MIT  MIT License
  */
 namespace Apnet\AsseticWatcherBundle\Factory;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * Asset watcher
@@ -122,9 +123,17 @@ class SourceCodeWatcher
    */
   public function addConfig($config, $watcher)
   {
-    if (is_null($this->_root) || strpos($config, $this->_root) !== 0) {
+    if (!$this->_root) {
       return;
     }
+    $config = realpath($config);
+
+    $filesystem = new Filesystem();
+    $relativePath = $filesystem->makePathRelative($config, $this->_root);
+    if (substr($relativePath, 0, 2) == "..") {
+      return;
+    }
+
     if (!isset($this->_configs[$watcher])) {
       $this->_configs[$watcher] = array();
     }
