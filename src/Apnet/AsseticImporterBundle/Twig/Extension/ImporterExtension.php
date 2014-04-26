@@ -3,14 +3,19 @@
 namespace Apnet\AsseticImporterBundle\Twig\Extension;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
-use Symfony\Component\Routing\RouteCollection;
 use Apnet\AsseticImporterBundle\Factory\Resource\CollectionResourceInterface;
+use Symfony\Bundle\TwigBundle\Extension\AssetsExtension;
 
 class ImporterExtension extends \Twig_Extension
 {
 
   /**
-   * @var RouteCollection
+   * @var bool
+   */
+  private $_useController;
+
+  /**
+   * @var Router
    */
   private $_router;
 
@@ -20,15 +25,18 @@ class ImporterExtension extends \Twig_Extension
   private $_res;
 
   /**
+   * @var AssetsExtension
+   */
+  private $_assets;
+
+  /**
    * Public constructor
    *
-   * @param Router                      $router Router
-   * @param CollectionResourceInterface $res    Resource collection
+   * @param bool $useController Use controller
    */
-  public function __construct(Router $router, CollectionResourceInterface $res)
+  public function __construct($useController)
   {
-    $this->_router = $router;
-    $this->_res = $res;
+    $this->_useController = $useController;
   }
 
   /**
@@ -51,10 +59,18 @@ class ImporterExtension extends \Twig_Extension
    */
   public function importedAsset($path, $parameters = array())
   {
-    return $this->_router->generate(
-      "_assetic_" . $this->_res->getFormulaeName($path),
-      $parameters
-    );
+    if ($this->_useController) {
+      $path = $this->_router->generate(
+        "_assetic_" . $this->_res->getFormulaeName($path),
+        $parameters
+      );
+    } else {
+      $path = $this->_assets->getAssetUrl(
+        ltrim($path, "/")
+      );
+    }
+
+    return $path;
   }
 
   /**
@@ -63,6 +79,42 @@ class ImporterExtension extends \Twig_Extension
   public function getName()
   {
     return 'apnet_importer_extension';
+  }
+
+  /**
+   * Set router
+   *
+   * @param Router $router Router
+   *
+   * @return null
+   */
+  public function setRouter(Router $router)
+  {
+    $this->_router = $router;
+  }
+
+  /**
+   * Set collection resource
+   *
+   * @param CollectionResourceInterface $res Collection resource
+   *
+   * @return null
+   */
+  public function setCollectionResource(CollectionResourceInterface $res)
+  {
+    $this->_res = $res;
+  }
+
+  /**
+   * Set TwigBundle AssetsExtension
+   *
+   * @param AssetsExtension $assetsExtension Assets extension
+   *
+   * @return null
+   */
+  public function setAssetsExtension(AssetsExtension $assetsExtension)
+  {
+    $this->_assets = $assetsExtension;
   }
 
 }

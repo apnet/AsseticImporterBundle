@@ -22,7 +22,10 @@ services:
     apnet.assetic.importer_twig_extension:
         class: %apnet.assetic.importer_twig_extension.class%
         arguments:
-            - @router
-            - @apnet.assetic.importer_resource
+            - %assetic.use_controller%
+        calls:
+            - [ setRouter, [ @router ] ]
+            - [ setCollectionResource, [ @apnet.assetic.importer_resource ] ]
+            - [ setAssetsExtension, [ @twig.extension.assets ] ]
         tags:
             - { name: twig.extension }
