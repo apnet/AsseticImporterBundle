@@ -1,5 +1,7 @@
-Assetic Importer Bundle [![Travis-ci status](https://travis-ci.org/apnet/AsseticImporterBundle.png?branch=master)](https://travis-ci.org/apnet/AsseticImporterBundle/)
+Assetic Importer Bundle
 =======================
+
+[![Travis-ci status](https://travis-ci.org/apnet/AsseticImporterBundle.png?branch=master)](https://travis-ci.org/apnet/AsseticImporterBundle/) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/4f7a57d5-5bc7-4a24-aaa8-fd2d812ec1fc/mini.png)](https://insight.sensiolabs.com/projects/4f7a57d5-5bc7-4a24-aaa8-fd2d812ec1fc)
 
 The main purpose of a `Bundle` is to exclude `cssrewrite` filter and to bypass known issue
 that causes the `cssrewrite` to fail when using the `@AcmeFooBundle` syntax for CSS Stylesheets.
