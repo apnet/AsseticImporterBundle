@@ -85,5 +85,4 @@ class Parser extends ParserAbstract
     }
     return $config;
   }
-
 }

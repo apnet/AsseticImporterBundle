@@ -41,5 +41,4 @@ class SourceCodePass implements CompilerPassInterface
       }
     }
   }
-
 }

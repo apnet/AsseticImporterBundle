@@ -34,5 +34,4 @@ interface CollectionResourceInterface extends ResourceInterface
    * @return string
    */
   public function getFormulaeName($target);
-
 }

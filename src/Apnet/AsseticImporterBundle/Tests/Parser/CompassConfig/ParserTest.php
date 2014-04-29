@@ -77,5 +77,4 @@ EOF;
       array($input[0], $data[0])
     );
   }
-
 }

@@ -19,14 +19,14 @@ class CollectionResource implements CollectionResourceInterface
   /**
    * @var array
    */
-  private $_formulae;
+  private $formulae;
 
   /**
    * Public constructor
    */
   public function __construct()
   {
-    $this->_formulae = array();
+    $this->formulae = array();
   }
 
   /**
@@ -42,7 +42,7 @@ class CollectionResource implements CollectionResourceInterface
    */
   public function getContent()
   {
-    return $this->_formulae;
+    return $this->formulae;
   }
 
   /**
@@ -70,7 +70,7 @@ class CollectionResource implements CollectionResourceInterface
       }
       $name = $this->getFormulaeName($options["output"]);
       $options["name"] = $name;
-      $this->_formulae[$name] = array($inputs, $filters, $options);
+      $this->formulae[$name] = array($inputs, $filters, $options);
     }
   }
 
@@ -83,5 +83,4 @@ class CollectionResource implements CollectionResourceInterface
 
     return "importer_" . md5($target);
   }
-
 }

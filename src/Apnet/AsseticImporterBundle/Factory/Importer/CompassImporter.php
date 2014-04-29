@@ -20,12 +20,12 @@ class CompassImporter
   /**
    * @var ParserInterface
    */
-  private $_parser;
+  private $parser;
 
   /**
    * @var array
    */
-  protected $_dirs = array(
+  protected $dirs = array(
     "css_dir", "images_dir", "javascripts_dir", "fonts_dir"
   );
 
@@ -36,7 +36,7 @@ class CompassImporter
    */
   public function __construct(ParserInterface $parser)
   {
-    $this->_parser = $parser;
+    $this->parser = $parser;
   }
 
   /**
@@ -52,9 +52,9 @@ class CompassImporter
     $mapper = new AssetMapper();
     $configDir = dirname($configPath);
 
-    $parameters = $this->_parser->load($configPath);
+    $parameters = $this->parser->load($configPath);
     foreach ($parameters as $key => $value) {
-      if (in_array($key, $this->_dirs)) {
+      if (in_array($key, $this->dirs)) {
         $mapper->map(
           $configDir . "/" . $value,
           $targetPath . "/" . $value
@@ -64,5 +64,4 @@ class CompassImporter
 
     return $mapper;
   }
-
 }

@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Reference;
 class CollectionResourcePass implements CompilerPassInterface
 {
 
-  private $_mapperTags = array(
+  private $mapperTags = array(
     'apnet.assetic.asset_mapper',
     'apnet.assetic.config_mapper'
   );
@@ -30,12 +30,11 @@ class CollectionResourcePass implements CompilerPassInterface
   {
     $collection = $container->getDefinition('apnet.assetic.importer_resource');
 
-    foreach ($this->_mapperTags as $tag) {
+    foreach ($this->mapperTags as $tag) {
       $assets = $container->findTaggedServiceIds($tag);
       foreach ($assets as $id => $tagAttributes) {
         $collection->addMethodCall('addAssetMapper', array(new Reference($id)));
       }
     }
   }
-
 }

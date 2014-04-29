@@ -21,12 +21,12 @@ class KernelRequestListener
   /**
    * @var SourceCodeWatcher
    */
-  private $_assetWatcher;
+  private $assetWatcher;
 
   /**
    * @var bool
    */
-  private $_debug;
+  private $debug;
 
   /**
    * Public constructor
@@ -36,8 +36,8 @@ class KernelRequestListener
    */
   public function __construct(SourceCodeWatcher $assetWatcher, $debug)
   {
-    $this->_assetWatcher = $assetWatcher;
-    $this->_debug = $debug;
+    $this->assetWatcher = $assetWatcher;
+    $this->debug = $debug;
   }
 
   /**
@@ -49,13 +49,12 @@ class KernelRequestListener
    */
   public function compile(GetResponseEvent $event)
   {
-    if (!$this->_debug) {
+    if (!$this->debug) {
       return;
     }
     if (HttpKernelInterface::MASTER_REQUEST !==  $event->getRequestType()) {
       return;
     }
-    $this->_assetWatcher->compile();
+    $this->assetWatcher->compile();
   }
-
 }

@@ -121,5 +121,4 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
       array($input[4], $expected[4]),
     );
   }
-
 }

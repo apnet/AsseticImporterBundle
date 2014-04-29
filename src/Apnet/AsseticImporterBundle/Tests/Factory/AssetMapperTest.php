@@ -53,5 +53,4 @@ class AssetMapperTest extends \PHPUnit_Framework_TestCase
       array($itemOne, $itemTwo), $mapper->getFormulae()
     );
   }
-
 }

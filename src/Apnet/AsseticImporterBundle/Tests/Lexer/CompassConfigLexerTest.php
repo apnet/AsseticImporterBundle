@@ -23,7 +23,7 @@ class CompassConfigLexerTest extends \PHPUnit_Framework_TestCase
    */
   public function testLexer()
   {
-    $tokens = $this->_getTokens(
+    $tokens = $this->getTokens(
       implode(
         PHP_EOL,
         array(
@@ -58,7 +58,7 @@ class CompassConfigLexerTest extends \PHPUnit_Framework_TestCase
    *
    * @return array
    */
-  private function _getTokens($input)
+  private function getTokens($input)
   {
     $tokens = array();
 
@@ -72,5 +72,4 @@ class CompassConfigLexerTest extends \PHPUnit_Framework_TestCase
     }
     return $tokens;
   }
-
 }

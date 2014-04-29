@@ -12,22 +12,22 @@ class ImporterExtension extends \Twig_Extension
   /**
    * @var bool
    */
-  private $_useController;
+  private $useController;
 
   /**
    * @var Router
    */
-  private $_router;
+  private $router;
 
   /**
    * @var CollectionResourceInterface
    */
-  private $_res;
+  private $res;
 
   /**
    * @var AssetsExtension
    */
-  private $_assets;
+  private $assets;
 
   /**
    * Public constructor
@@ -36,7 +36,7 @@ class ImporterExtension extends \Twig_Extension
    */
   public function __construct($useController)
   {
-    $this->_useController = $useController;
+    $this->useController = $useController;
   }
 
   /**
@@ -59,13 +59,13 @@ class ImporterExtension extends \Twig_Extension
    */
   public function importedAsset($path, $parameters = array())
   {
-    if ($this->_useController) {
-      $path = $this->_router->generate(
-        "_assetic_" . $this->_res->getFormulaeName($path),
+    if ($this->useController) {
+      $path = $this->router->generate(
+        "_assetic_" . $this->res->getFormulaeName($path),
         $parameters
       );
     } else {
-      $path = $this->_assets->getAssetUrl(
+      $path = $this->assets->getAssetUrl(
         ltrim($path, "/")
       );
     }
@@ -90,7 +90,7 @@ class ImporterExtension extends \Twig_Extension
    */
   public function setRouter(Router $router)
   {
-    $this->_router = $router;
+    $this->router = $router;
   }
 
   /**
@@ -102,7 +102,7 @@ class ImporterExtension extends \Twig_Extension
    */
   public function setCollectionResource(CollectionResourceInterface $res)
   {
-    $this->_res = $res;
+    $this->res = $res;
   }
 
   /**
@@ -114,7 +114,6 @@ class ImporterExtension extends \Twig_Extension
    */
   public function setAssetsExtension(AssetsExtension $assetsExtension)
   {
-    $this->_assets = $assetsExtension;
+    $this->assets = $assetsExtension;
   }
-
 }

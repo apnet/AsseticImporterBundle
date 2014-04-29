@@ -20,7 +20,7 @@ class SourceCodeCacheWarmer implements CacheWarmerInterface
   /**
    * @var SourceCodeWatcher
    */
-  private $_watcher;
+  private $watcher;
 
   /**
    * Public constructor
@@ -29,7 +29,7 @@ class SourceCodeCacheWarmer implements CacheWarmerInterface
    */
   public function __construct(SourceCodeWatcher $watcher)
   {
-    $this->_watcher = $watcher;
+    $this->watcher = $watcher;
   }
 
   /**
@@ -37,7 +37,7 @@ class SourceCodeCacheWarmer implements CacheWarmerInterface
    */
   public function warmUp($cacheDir)
   {
-    $this->_watcher->compile();
+    $this->watcher->compile();
   }
 
   /**

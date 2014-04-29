@@ -20,7 +20,7 @@ class PreImporter
   /**
    * @var ParserInterface
    */
-  private $_parser;
+  private $parser;
 
   /**
    * Public constructor
@@ -29,7 +29,7 @@ class PreImporter
    */
   public function __construct(ParserInterface $parser)
   {
-    $this->_parser = $parser;
+    $this->parser = $parser;
   }
 
   /**
@@ -45,7 +45,7 @@ class PreImporter
     $mapper = new AssetMapper();
     $configDir = dirname($configPath);
 
-    $parameters = $this->_loadConfig($configPath);
+    $parameters = $this->loadConfig($configPath);
     foreach ($parameters as $asset) {
       $options = $asset["options"];
       if (isset($options["output"])) {
@@ -66,9 +66,8 @@ class PreImporter
    *
    * @return array
    */
-  protected function _loadConfig($configPath)
+  protected function loadConfig($configPath)
   {
-    return $this->_parser->load($configPath);
+    return $this->parser->load($configPath);
   }
-
 }

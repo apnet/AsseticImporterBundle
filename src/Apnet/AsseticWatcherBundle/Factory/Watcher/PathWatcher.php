@@ -37,5 +37,4 @@ class PathWatcher implements WatcherInterface
   {
     return "path";
   }
-
 }

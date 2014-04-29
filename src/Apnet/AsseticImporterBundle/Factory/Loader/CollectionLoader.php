@@ -30,5 +30,4 @@ class CollectionLoader implements FormulaLoaderInterface
     }
     return $content;
   }
-
 }

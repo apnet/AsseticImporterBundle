@@ -19,12 +19,12 @@ class PreWatcher implements WatcherInterface
   /**
    * @var ParserInterface
    */
-  private $_parser;
+  private $parser;
 
   /**
    * @var FilterManager
    */
-  private $_filterManager;
+  private $filterManager;
 
   /**
    * Public constructor
@@ -34,8 +34,8 @@ class PreWatcher implements WatcherInterface
    */
   public function __construct(ParserInterface $parser, FilterManager $filterManager)
   {
-    $this->_parser = $parser;
-    $this->_filterManager = $filterManager;
+    $this->parser = $parser;
+    $this->filterManager = $filterManager;
   }
 
   /**
@@ -44,7 +44,7 @@ class PreWatcher implements WatcherInterface
   public function getChildren($configPath)
   {
     $children = array();
-    foreach ($this->_loadConfig($configPath) as $asset) {
+    foreach ($this->loadConfig($configPath) as $asset) {
       foreach ($asset["inputs"] as $file) {
         if (substr($file, 0, 1) !== "/") { // Unix style
           $file = dirname($configPath) . "/" . $file;
@@ -61,7 +61,7 @@ class PreWatcher implements WatcherInterface
   public function compile($configPath)
   {
     $sourceRoot = dirname($configPath);
-    foreach ($this->_loadConfig($configPath) as $asset) {
+    foreach ($this->loadConfig($configPath) as $asset) {
       if (!isset($asset["options"]["output"])) {
         continue;
       }
@@ -73,7 +73,7 @@ class PreWatcher implements WatcherInterface
 
       $filters = array();
       foreach ($asset["filters"] as $filter) {
-        $filters[] = $this->_filterManager->get($filter);
+        $filters[] = $this->filterManager->get($filter);
       }
       $collection = new AssetCollection($assets, $filters);
 
@@ -99,9 +99,8 @@ class PreWatcher implements WatcherInterface
    *
    * @return array
    */
-  protected function _loadConfig($configPath)
+  protected function loadConfig($configPath)
   {
-    return $this->_parser->load($configPath);
+    return $this->parser->load($configPath);
   }
-
 }

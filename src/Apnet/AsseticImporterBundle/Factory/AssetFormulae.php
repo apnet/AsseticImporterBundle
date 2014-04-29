@@ -17,26 +17,26 @@ class AssetFormulae
   /**
    * @var array
    */
-  private $_inputs;
+  private $inputs;
 
   /**
    * @var array
    */
-  private $_filters;
+  private $filters;
 
   /**
    * @var array
    */
-  private $_options;
+  private $options;
 
   /**
    * Public constructor
    */
   public function __construct()
   {
-    $this->_inputs = array();
-    $this->_filters = array();
-    $this->_options = array();
+    $this->inputs = array();
+    $this->filters = array();
+    $this->options = array();
   }
 
   /**
@@ -48,7 +48,7 @@ class AssetFormulae
    */
   public function setFilters(array $filters)
   {
-    $this->_filters = $filters;
+    $this->filters = $filters;
 
     return $this;
   }
@@ -60,7 +60,7 @@ class AssetFormulae
    */
   public function getFilters()
   {
-    return $this->_filters;
+    return $this->filters;
   }
 
   /**
@@ -72,7 +72,7 @@ class AssetFormulae
    */
   public function setInputs(array $inputs)
   {
-    $this->_inputs = $inputs;
+    $this->inputs = $inputs;
 
     return $this;
   }
@@ -84,7 +84,7 @@ class AssetFormulae
    */
   public function getInputs()
   {
-    return $this->_inputs;
+    return $this->inputs;
   }
 
   /**
@@ -96,7 +96,7 @@ class AssetFormulae
    */
   public function setOptions(array $options)
   {
-    $this->_options = $options;
+    $this->options = $options;
 
     return $this;
   }
@@ -108,7 +108,7 @@ class AssetFormulae
    */
   public function getOptions()
   {
-    return $this->_options;
+    return $this->options;
   }
 
   /**
@@ -120,7 +120,7 @@ class AssetFormulae
    */
   public function hasOption($name)
   {
-    return isset($this->_options[$name]);
+    return isset($this->options[$name]);
   }
 
   /**
@@ -133,11 +133,10 @@ class AssetFormulae
   public function getOption($name)
   {
     if ($this->hasOption($name)) {
-      $option = $this->_options[$name];
+      $option = $this->options[$name];
     } else {
       $option = null;
     }
     return $option;
   }
-
 }

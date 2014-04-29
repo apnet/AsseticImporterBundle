@@ -30,5 +30,4 @@ class FactoryPass implements CompilerPassInterface
       $collection->addMethodCall('addWatcher', array(new Reference($id)));
     }
   }
-
 }

@@ -19,14 +19,14 @@ class AssetMapper
   /**
    * @var AssetFormulae[]
    */
-  private $_formulae;
+  private $formulae;
 
   /**
    * Public constructor
    */
   public function __construct()
   {
-    $this->_formulae = array();
+    $this->formulae = array();
   }
 
   /**
@@ -38,7 +38,7 @@ class AssetMapper
    */
   public function append(AssetFormulae $formulae)
   {
-    $this->_formulae[] = $formulae;
+    $this->formulae[] = $formulae;
 
     return $this;
   }
@@ -87,7 +87,7 @@ class AssetMapper
    */
   public function getFormulae()
   {
-    return $this->_formulae;
+    return $this->formulae;
   }
 
   /**
@@ -99,12 +99,11 @@ class AssetMapper
    */
   public function item($offset)
   {
-    if (isset($this->_formulae[$offset])) {
-      $item = $this->_formulae[$offset];
+    if (isset($this->formulae[$offset])) {
+      $item = $this->formulae[$offset];
     } else {
       $item = null;
     }
     return $item;
   }
-
 }

@@ -29,5 +29,4 @@ class ApnetAsseticWatcherBundle extends Bundle
       new DependencyInjection\Compiler\SourceCodePass()
     );
   }
-
 }

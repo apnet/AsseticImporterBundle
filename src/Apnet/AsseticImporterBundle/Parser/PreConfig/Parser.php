@@ -31,5 +31,4 @@ class Parser extends ParserAbstract
 
     return $processor->processConfiguration($configuration, $data);
   }
-
 }

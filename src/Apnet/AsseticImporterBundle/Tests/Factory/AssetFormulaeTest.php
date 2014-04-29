@@ -47,5 +47,4 @@ class AssetFormulaeTest extends \PHPUnit_Framework_TestCase
     $this->assertFalse($object->hasOption("qqq"));
     $this->assertNull($object->getOption("qqq"));
   }
-
 }
