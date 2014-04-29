@@ -40,5 +40,4 @@ class PathImporterTest extends \PHPUnit_Framework_TestCase
       array("output" => "qwerty/style.css"), $asset->getOptions()
     );
   }
-
 }

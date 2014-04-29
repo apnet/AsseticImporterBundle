@@ -23,5 +23,4 @@ abstract class ParserAbstract implements ParserInterface
       file_get_contents($path)
     );
   }
-
 }

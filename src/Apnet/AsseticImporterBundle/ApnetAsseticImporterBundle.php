@@ -26,5 +26,4 @@ class ApnetAsseticImporterBundle extends Bundle
       new DependencyInjection\Compiler\CollectionResourcePass()
     );
   }
-
 }

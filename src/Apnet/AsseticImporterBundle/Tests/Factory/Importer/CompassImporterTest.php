@@ -42,5 +42,4 @@ class CompassImporterTest extends \PHPUnit_Framework_TestCase
       array("output" => "qwerty/css/style.css"), $asset->getOptions()
     );
   }
-
 }

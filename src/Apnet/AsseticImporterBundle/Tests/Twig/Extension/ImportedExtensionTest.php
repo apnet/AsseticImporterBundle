@@ -24,7 +24,7 @@ class ImportedExtensionTest extends WebTestCase
    */
   public function testImporterAsset()
   {
-    $extension = $this->_getTwigExtension();
+    $extension = $this->getTwigExtension();
 
     $this->assertEquals(
       '/test2/style2.css',
@@ -40,7 +40,7 @@ class ImportedExtensionTest extends WebTestCase
    */
   public function testImporterAssetException()
   {
-    $extension = $this->_getTwigExtension();
+    $extension = $this->getTwigExtension();
 
     $this->assertEquals(
       null,
@@ -53,11 +53,10 @@ class ImportedExtensionTest extends WebTestCase
    *
    * @return ImporterExtension
    */
-  private function _getTwigExtension()
+  private function getTwigExtension()
   {
     $client = self::createClient();
     return $client->getContainer()
       ->get('apnet.assetic.importer_twig_extension');
   }
-
 }

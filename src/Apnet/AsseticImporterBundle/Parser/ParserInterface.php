@@ -31,5 +31,4 @@ interface ParserInterface
    * @return array
    */
   public function load($path);
-
 }

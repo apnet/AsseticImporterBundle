@@ -20,7 +20,7 @@ class CompassWatcher implements WatcherInterface
   /**
    * @var ParserInterface
    */
-  private $_parser;
+  private $parser;
 
   /**
    * Public constructor
@@ -29,7 +29,7 @@ class CompassWatcher implements WatcherInterface
    */
   public function __construct(ParserInterface $parser)
   {
-    $this->_parser = $parser;
+    $this->parser = $parser;
   }
 
   /**
@@ -37,7 +37,7 @@ class CompassWatcher implements WatcherInterface
    */
   public function getChildren($configPath)
   {
-    $config = $this->_parser->load($configPath);
+    $config = $this->parser->load($configPath);
 
     $children = array();
     if (isset($config["sass_dir"])) {
@@ -75,5 +75,4 @@ class CompassWatcher implements WatcherInterface
   {
     return "compass";
   }
-
 }

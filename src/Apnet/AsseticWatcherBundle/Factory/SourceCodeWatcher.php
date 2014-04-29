@@ -7,6 +7,7 @@
  * @license http://opensource.org/licenses/MIT  MIT License
  */
 namespace Apnet\AsseticWatcherBundle\Factory;
+
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
@@ -18,32 +19,32 @@ class SourceCodeWatcher
   /**
    * @var Watcher\WatcherInterface[]
    */
-  private $_watchers = array();
+  private $watchers = array();
 
   /**
    * @var array
    */
-  private $_configs = array();
+  private $configs = array();
 
   /**
    * @var SourceCodeCache
    */
-  private $_cache;
+  private $cache;
 
   /**
    * @var string
    */
-  private $_root;
+  private $root;
 
   /**
    * @var string
    */
-  private $_env;
+  private $env;
 
   /**
    * @var bool
    */
-  private $_enabled;
+  private $enabled;
 
   /**
    * Public constructor
@@ -52,12 +53,12 @@ class SourceCodeWatcher
    */
   public function __construct(SourceCodeCache $cache)
   {
-    $this->_watchers = array();
-    $this->_configs = array();
-    $this->_cache = $cache;
-    $this->_root = null;
-    $this->_env = null;
-    $this->_enabled = true;
+    $this->watchers = array();
+    $this->configs = array();
+    $this->cache = $cache;
+    $this->root = null;
+    $this->env = null;
+    $this->enabled = true;
   }
 
   /**
@@ -71,7 +72,7 @@ class SourceCodeWatcher
   {
     $path = realpath($path);
     if (is_dir($path)) {
-      $this->_root = $path;
+      $this->root = $path;
     }
   }
 
@@ -84,7 +85,7 @@ class SourceCodeWatcher
    */
   public function setEnv($env)
   {
-    $this->_env = $env;
+    $this->env = $env;
   }
 
   /**
@@ -96,7 +97,7 @@ class SourceCodeWatcher
    */
   public function setEnabled($enabled)
   {
-    $this->_enabled = !!$enabled;
+    $this->enabled = !!$enabled;
   }
 
   /**
@@ -110,7 +111,7 @@ class SourceCodeWatcher
   {
     $type = $watcher->getType();
 
-    $this->_watchers[$type] = $watcher;
+    $this->watchers[$type] = $watcher;
   }
 
   /**
@@ -123,21 +124,21 @@ class SourceCodeWatcher
    */
   public function addConfig($config, $watcher)
   {
-    if (!$this->_root) {
+    if (!$this->root) {
       return;
     }
     $config = realpath($config);
 
     $filesystem = new Filesystem();
-    $relativePath = $filesystem->makePathRelative($config, $this->_root);
+    $relativePath = $filesystem->makePathRelative($config, $this->root);
     if (substr($relativePath, 0, 2) == "..") {
       return;
     }
 
-    if (!isset($this->_configs[$watcher])) {
-      $this->_configs[$watcher] = array();
+    if (!isset($this->configs[$watcher])) {
+      $this->configs[$watcher] = array();
     }
-    $this->_configs[$watcher][] = $config;
+    $this->configs[$watcher][] = $config;
   }
 
   /**
@@ -147,20 +148,19 @@ class SourceCodeWatcher
    */
   public function compile()
   {
-    if (!$this->_enabled || $this->_env !== "dev") {
+    if (!$this->enabled || $this->env !== "dev") {
       return;
     }
-    foreach ($this->_watchers as $name => $watcher) {
-      if (isset($this->_configs[$name])) {
-        foreach ($this->_configs[$name] as $configPath) {
+    foreach ($this->watchers as $name => $watcher) {
+      if (isset($this->configs[$name])) {
+        foreach ($this->configs[$name] as $configPath) {
           $files = $watcher->getChildren($configPath);
-          if ($this->_cache->isFresh($configPath, $files)) {
+          if ($this->cache->isFresh($configPath, $files)) {
             $watcher->compile($configPath);
-            $this->_cache->write($configPath, $files);
+            $this->cache->write($configPath, $files);
           }
         }
       }
     }
   }
-
 }

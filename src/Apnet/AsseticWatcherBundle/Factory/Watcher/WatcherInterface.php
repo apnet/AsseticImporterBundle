@@ -38,5 +38,4 @@ interface WatcherInterface
    * @return string
    */
   public function getType();
-
 }

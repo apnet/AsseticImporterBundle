@@ -21,17 +21,17 @@ class SourceCodeCache
   /**
    * @var string
    */
-  private $_cacheDir;
+  private $cacheDir;
 
   /**
    * @var string
    */
-  private $_dir = "assetic.apnet";
+  private $dir = "assetic.apnet";
 
   /**
    * @var ConfigCache[]
    */
-  private $_cacheList;
+  private $cacheList;
 
   /**
    * Public constructor
@@ -40,8 +40,8 @@ class SourceCodeCache
    */
   public function __construct($cacheDir)
   {
-    $this->_cacheDir = $cacheDir;
-    $this->_cacheList = array();
+    $this->cacheDir = $cacheDir;
+    $this->cacheList = array();
   }
 
   /**
@@ -56,7 +56,7 @@ class SourceCodeCache
   {
     $action = true;
 
-    $cache = $this->_getCache($configPath);
+    $cache = $this->getCache($configPath);
     if ($cache->isFresh()) {
       $cachedResources = include($cache);
       sort($files);
@@ -90,7 +90,7 @@ class SourceCodeCache
 
     $code = "<?php return " . var_export($files, true) . ";";
 
-    $this->_getCache($configPath)
+    $this->getCache($configPath)
       ->write($code, $resources);
   }
 
@@ -101,7 +101,7 @@ class SourceCodeCache
    */
   public function getDir()
   {
-    return $this->_dir;
+    return $this->dir;
   }
 
   /**
@@ -111,14 +111,14 @@ class SourceCodeCache
    *
    * @return ConfigCache
    */
-  private function _getCache($configPath)
+  private function getCache($configPath)
   {
-    if (!isset($this->_cacheList[$configPath])) {
-      $cachePath = $this->_getCachePath($configPath);
-      $this->_cacheList[$configPath] = new ConfigCache($cachePath, true);
+    if (!isset($this->cacheList[$configPath])) {
+      $cachePath = $this->getCachePath($configPath);
+      $this->cacheList[$configPath] = new ConfigCache($cachePath, true);
     }
 
-    return $this->_cacheList[$configPath];
+    return $this->cacheList[$configPath];
   }
 
   /**
@@ -128,14 +128,13 @@ class SourceCodeCache
    *
    * @return string
    */
-  private function _getCachePath($configPath)
+  private function getCachePath($configPath)
   {
     return implode(
       "/",
       array(
-        $this->_cacheDir, $this->getDir(), md5($configPath) . ".php"
+        $this->cacheDir, $this->getDir(), md5($configPath) . ".php"
       )
     );
   }
-
 }

@@ -31,5 +31,4 @@ class PathImporter
 
     return $mapper;
   }
-
 }

@@ -21,7 +21,7 @@ class SourceCodeCacheClearer implements CacheClearerInterface
   /**
    * @var SourceCodeCache
    */
-  private $_cache;
+  private $cache;
 
   /**
    * Public constructor
@@ -30,7 +30,7 @@ class SourceCodeCacheClearer implements CacheClearerInterface
    */
   public function __construct(SourceCodeCache $cache)
   {
-    $this->_cache = $cache;
+    $this->cache = $cache;
   }
 
   /**
@@ -38,11 +38,10 @@ class SourceCodeCacheClearer implements CacheClearerInterface
    */
   public function clear($cacheDir)
   {
-    $watcherCache = $cacheDir . "/" . $this->_cache->getDir();
+    $watcherCache = $cacheDir . "/" . $this->cache->getDir();
     if (is_dir($watcherCache)) {
       $filesystem = new Filesystem();
       $filesystem->remove($watcherCache);
     }
   }
-
 }

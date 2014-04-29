@@ -72,5 +72,4 @@ class ApnetAsseticImporterBundleTest extends WebTestCase
       )
     );
   }
-
 }
