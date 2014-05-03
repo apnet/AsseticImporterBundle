@@ -11,7 +11,9 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 /**
  * Bundle test kernel
  */
+// @codingStandardsIgnoreStart
 class AppKernel extends Apnet\FunctionalTestBundle\HttpKernel\AppKernel
+// @codingStandardsIgnoreEnd
 {
 
   /**
@@ -29,6 +31,7 @@ class AppKernel extends Apnet\FunctionalTestBundle\HttpKernel\AppKernel
       new Apnet\AsseticWatcherBundle\ApnetAsseticWatcherBundle(),
       new Apnet\FunctionalTestBundle\ApnetFunctionalTestBundle(),
 
+      new Covex\TwigCallableBridgeBundle\CovexTwigCallableBridgeBundle(),
       new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
     );
   }
@@ -40,21 +43,4 @@ class AppKernel extends Apnet\FunctionalTestBundle\HttpKernel\AppKernel
   {
     $loader->load(__DIR__ . "/config/config.yml");
   }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getCacheDir()
-  {
-    return $this->rootDir.'/cache/'.$this->environment;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getLogDir()
-  {
-    return $this->rootDir.'/logs';
-  }
-
 }

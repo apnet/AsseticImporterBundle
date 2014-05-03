@@ -50,3 +50,7 @@ apnet_assetic_importer:
 apnet_assetic_watcher:
     compiler_root: %kernel.root_dir%/Resources
     enabled: true
+
+covex_twig_callable_bridge:
+    functions:
+        file_get_contents: file_get_contents

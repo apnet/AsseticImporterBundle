@@ -30,9 +30,3 @@ services:
             - filters_project1
         tags:
             - { name: apnet.assetic.config_mapper, watcher: pre }
-
-    # Twig extension
-    apnet.dev.twig_extension:
-        class: Apnet\Dev\TwigExtension
-        tags:
-            - { name: twig.extension }
