@@ -2,7 +2,7 @@
 
 namespace Apnet\AsseticImporterBundle\Twig\Extension;
 
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 use Apnet\AsseticImporterBundle\Factory\Resource\CollectionResourceInterface;
 use Symfony\Bundle\TwigBundle\Extension\AssetsExtension;
 
@@ -15,7 +15,7 @@ class ImporterExtension extends \Twig_Extension
   private $useController;
 
   /**
-   * @var Router
+   * @var RouterInterface
    */
   private $router;
 
@@ -84,11 +84,11 @@ class ImporterExtension extends \Twig_Extension
   /**
    * Set router
    *
-   * @param Router $router Router
+   * @param RouterInterface $router Router
    *
    * @return null
    */
-  public function setRouter(Router $router)
+  public function setRouter(RouterInterface $router)
   {
     $this->router = $router;
   }
