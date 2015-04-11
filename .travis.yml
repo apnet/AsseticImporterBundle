@@ -13,6 +13,7 @@ before_script:
    - gem install compass -v 0.12.2
    - composer self-update
    - sh -c "if $TRAVIS_SECURE_ENV_VARS; then composer config --global github-oauth.github.com $GITHUB_OAUTH_TOKEN; fi"
+   - composer install
 
 script:
    - bin/phpunit --coverage-text
