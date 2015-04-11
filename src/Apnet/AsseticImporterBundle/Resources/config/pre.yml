@@ -16,7 +16,6 @@ services:
     # importer_pre service template
     assetic.importer_pre:
         class: %apnet.assetic.asset_mapper.class%
-        factory_service: apnet.assetic.importer.pre
-        factory_method: load
+        factory: [ "@apnet.assetic.importer.pre", load ]
         public: false
         abstract: true

@@ -9,7 +9,6 @@ services:
     # importer_path service templae
     assetic.importer_path:
         class: %apnet.assetic.asset_mapper.class%
-        factory_service: apnet.assetic.importer.path
-        factory_method: load
+        factory: [ "@apnet.assetic.importer.path", load ]
         public: false
         abstract: true

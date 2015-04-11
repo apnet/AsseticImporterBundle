@@ -4,7 +4,7 @@ namespace Apnet\AsseticImporterBundle\Twig\Extension;
 
 use Symfony\Component\Routing\RouterInterface;
 use Apnet\AsseticImporterBundle\Factory\Resource\CollectionResourceInterface;
-use Symfony\Bundle\TwigBundle\Extension\AssetsExtension;
+use Symfony\Bridge\Twig\Extension\AssetExtension;
 
 class ImporterExtension extends \Twig_Extension
 {
@@ -25,7 +25,7 @@ class ImporterExtension extends \Twig_Extension
   private $res;
 
   /**
-   * @var AssetsExtension
+   * @var AssetExtension
    */
   private $assets;
 
@@ -106,14 +106,14 @@ class ImporterExtension extends \Twig_Extension
   }
 
   /**
-   * Set TwigBundle AssetsExtension
+   * Set Twig AssetExtension
    *
-   * @param AssetsExtension $assetsExtension Assets extension
+   * @param AssetExtension $assetExtension Assets extension
    *
    * @return null
    */
-  public function setAssetsExtension(AssetsExtension $assetsExtension)
+  public function setAssetsExtension(AssetExtension $assetExtension)
   {
-    $this->assets = $assetsExtension;
+    $this->assets = $assetExtension;
   }
 }
