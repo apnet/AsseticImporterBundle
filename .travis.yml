@@ -2,22 +2,17 @@ language: php
 
 php:
    - 5.3
-   - 5.4
    - 5.5
 
 env:
    global:
       - secure: "R24MLQ6CwyujG8TtOn/TgzoPyV/QxQkDVMKuaL6Zq1OqxDFkN0sxqeVc3U7GD+UTjhCFu9NmnqAw3p0e29aLxbqyy7wbCg12laIY82j6ZK0DTIXEcJoCDsYFzDGXuX0YnaOm6WLdohT2Wfi98RGA0eVwoV0nzqrvacZ/Glvjyew="
-   matrix:
-      - SYMFONY_VERSION=2.3.*
-      - SYMFONY_VERSION=2.4.*
 
 before_script:
    - gem install sass -v 3.2.9
    - gem install compass -v 0.12.2
    - composer self-update
    - sh -c "if $TRAVIS_SECURE_ENV_VARS; then composer config --global github-oauth.github.com $GITHUB_OAUTH_TOKEN; fi"
-   - composer require --dev symfony/symfony:${SYMFONY_VERSION}
 
 script:
    - bin/phpunit --coverage-text
