@@ -16,7 +16,6 @@ services:
     # importer_compass service template
     assetic.importer_compass:
         class: %apnet.assetic.asset_mapper.class%
-        factory_service: apnet.assetic.importer.compass
-        factory_method: load
+        factory: [ "@apnet.assetic.importer.compass", load ]
         public: false
         abstract: true
