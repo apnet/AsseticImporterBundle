@@ -13,6 +13,9 @@ use Assetic\FilterManager;
 use Assetic\Asset\AssetCollection;
 use Assetic\Asset\FileAsset;
 
+/**
+ * PreWatcher internal assets
+ */
 class PreWatcher implements WatcherInterface
 {
 

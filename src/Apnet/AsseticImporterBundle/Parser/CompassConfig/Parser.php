@@ -46,7 +46,6 @@ class Parser extends ParserAbstract
       } elseif (!$lexer->moveNext()) {
         break;
       } elseif ($lexer->lookahead["type"] == CompassConfigLexer::T_COLON) {
-
         if (!$lexer->moveNext()) {
           break;
         } elseif ($lexer->lookahead["type"] != CompassConfigLexer::T_IDENTIFIER) {
@@ -59,9 +58,7 @@ class Parser extends ParserAbstract
             continue;
           }
         }
-
       } else {
-
         switch ($lexer->lookahead["type"]) {
           case CompassConfigLexer::T_TRUE:
             $value = true;
