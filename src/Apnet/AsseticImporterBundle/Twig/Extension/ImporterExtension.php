@@ -6,6 +6,9 @@ use Symfony\Component\Routing\RouterInterface;
 use Apnet\AsseticImporterBundle\Factory\Resource\CollectionResourceInterface;
 use Symfony\Bridge\Twig\Extension\AssetExtension;
 
+/**
+ * Twig extension
+ */
 class ImporterExtension extends \Twig_Extension
 {
 
