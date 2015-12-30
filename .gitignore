@@ -3,8 +3,8 @@
 /.vagrant
 /app/cache
 /app/logs
+/auth.json
 /bin
-/github-oauth.txt
 /phpunit.phar
 /phpunit.xml
 /vendor

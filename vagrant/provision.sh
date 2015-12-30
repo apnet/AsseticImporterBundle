@@ -8,13 +8,6 @@ if [ -d /home/vagrant/share ]; then
     fi
 fi
 cd /vagrant
-if [ -f ./github-oauth.txt ]; then
-    GITHUB_OAUTH_TOKEN="$(cat github-oauth.txt)"
-
-    composer config --file=/home/vagrant/.composer/config.json github-oauth.github.com $GITHUB_OAUTH_TOKEN
-    chown vagrant:vagrant /home/vagrant/.composer/auth.json
-    composer config --global github-oauth.github.com $GITHUB_OAUTH_TOKEN
-fi
 composer install
 chown -R vagrant:vagrant /home/vagrant/share/vendor
 app/console cache:warmup
