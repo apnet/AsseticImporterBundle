@@ -58,7 +58,7 @@ class SourceCodeCache
 
     $cache = $this->getCache($configPath);
     if ($cache->isFresh()) {
-      $cachedResources = include($cache);
+      $cachedResources = include($cache->getPath());
       sort($files);
       if ($cachedResources == $files) {
         $action = false;

@@ -11,7 +11,7 @@ services:
     apnet.assetic.importer.compass:
         class: %apnet.assetic.importer.compass.class%
         arguments:
-            - @apnet.assetic.importer_parser.compass
+            - "@apnet.assetic.importer_parser.compass"
 
     # importer_compass service template
     assetic.importer_compass:

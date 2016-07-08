@@ -1,8 +1,7 @@
 is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "covex/symfony-ubuntu1204-x64"
-  config.vm.box_version = ">= 2.1.0"
+  config.vm.box = "covex/symfony-ubuntu1404-x64"
 
   config.vm.network :private_network, ip: "192.168.80.80"
   config.vm.hostname = "importer.local"

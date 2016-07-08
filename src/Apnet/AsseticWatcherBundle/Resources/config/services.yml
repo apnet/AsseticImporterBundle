@@ -16,7 +16,7 @@ services:
     apnet.assetic.source_cache.clearer:
         class: %apnet.assetic.source_cache.clearer.class%
         arguments:
-            - @apnet.assetic.source_cache
+            - "@apnet.assetic.source_cache"
         tags:
             - { name: kernel.cache_clearer }
 
@@ -24,7 +24,7 @@ services:
     apnet.assetic.source_watcher:
         class: %apnet.assetic.source_watcher.class%
         arguments:
-            - @apnet.assetic.source_cache
+            - "@apnet.assetic.source_cache"
         calls:
             - [ setCompilerRoot, [ %apnet_assetic_watcher.compiler_root% ] ]
             - [ setEnv, [ %kernel.environment% ] ]
@@ -34,7 +34,7 @@ services:
     apnet.assetic.source_cache.warmer:
         class: %apnet.assetic.source_cache.warmer.class%
         arguments:
-            - @apnet.assetic.source_watcher
+            - "@apnet.assetic.source_watcher"
         tags:
             - { name: kernel.cache_warmer }
 
@@ -42,7 +42,7 @@ services:
     apnet.assetic.listener.asset_watcher:
         class: %apnet.assetic.listener.asset_watcher.class%
         arguments:
-            - @apnet.assetic.source_watcher
+            - "@apnet.assetic.source_watcher"
             - %kernel.debug%
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: compile }

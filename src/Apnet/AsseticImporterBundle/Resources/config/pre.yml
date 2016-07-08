@@ -11,7 +11,7 @@ services:
     apnet.assetic.importer.pre:
         class: %apnet.assetic.importer.pre.class%
         arguments:
-            - @apnet.assetic.importer_parser.pre
+            - "@apnet.assetic.importer_parser.pre"
 
     # importer_pre service template
     assetic.importer_pre:
