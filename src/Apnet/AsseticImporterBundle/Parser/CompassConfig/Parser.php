@@ -75,7 +75,6 @@ class Parser extends ParserAbstract
           default:
             break 2;
         }
-
       }
 
       $config[$name] = $value;
